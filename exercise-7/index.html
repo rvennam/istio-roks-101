@@ -4,7 +4,7 @@
     <head>
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <title>Installing Service Mesh · Istio on ROKS</title>
+        <title>Secure your mesh · Istio on ROKS</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="description" content="">
         <meta name="generator" content="GitBook 3.2.3">
@@ -85,10 +85,8 @@
     <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
 
     
-    <link rel="next" href="../exercise-3/" />
     
-    
-    <link rel="prev" href="../exercise-1/" />
+    <link rel="prev" href="../exercise-6/" />
     
 
     </head>
@@ -154,9 +152,9 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.2" data-path="./">
+        <li class="chapter " data-level="2.2" data-path="../exercise-2/">
             
-                <a href="./">
+                <a href="../exercise-2/">
             
                     
                         <b>2.2.</b>
@@ -229,9 +227,9 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../exercise-7/">
+        <li class="chapter active" data-level="2.7" data-path="./">
             
-                <a href="../exercise-7/">
+                <a href="./">
             
                     
                         <b>2.7.</b>
@@ -274,7 +272,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href=".." >Installing Service Mesh</a>
+        <a href=".." >Secure your mesh</a>
     </h1>
 </div>
 
@@ -289,39 +287,89 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="exercise-2---installing-istio-on-ibm-cloud-kubernetes-service">Exercise 2 - Installing Istio on IBM Cloud Kubernetes Service</h1>
-<h2 id="install-the-operator">Install the Operator</h2>
+                                <h1 id="exercise-7---secure-your-services">Exercise 7 - Secure your services</h1>
+<h2 id="mutual-authentication-with-transport-layer-security-mtls">Mutual authentication with Transport Layer Security (mTLS)</h2>
+<p>Istio can secure the communication between microservices without requiring application code changes. Security is provided by authenticating and encrypting communication paths within the cluster. This is becoming a common security and compliance requirement. Delegating communication security to Istio (as opposed to implementing TLS in each microservice), ensures that your application will be deployed with consistent and manageable security policies.</p>
+<p>Istio Citadel is an optional part of Istio&apos;s control plane components. When enabled, it provides each Envoy sidecar proxy with a strong (cryptographic) identity, in the form of a certificate.
+Identity is based on the microservice&apos;s service account and is independent of its specific network location, such as cluster or current IP address.
+Envoys then use the certificates to identify each other and establish an authenticated and encrypted communication channel between them.</p>
+<p>Citadel is responsible for:</p>
+<ul>
+<li><p>Providing each service with an identity representing its role.</p>
+</li>
+<li><p>Providing a common trust root to allow Envoys to validate and authenticate each other.</p>
+</li>
+<li><p>Providing a key management system, automating generation, distribution, and rotation of certificates and keys.</p>
+</li>
+</ul>
+<p>When an application microservice connects to another microservice, the communication is redirected through the client side and server side Envoys. The end-to-end communication path is:</p>
+<ul>
+<li><p>Local TCP connection (i.e., <code>localhost</code>, not reaching the &quot;wire&quot;) between the application and Envoy (client- and server-side);</p>
+</li>
+<li><p>Mutually authenticated and encrypted connection between Envoy proxies.</p>
+</li>
+</ul>
+<p>When Envoy proxies establish a connection, they exchange and validate certificates to confirm that each is indeed connected to a valid and expected peer. The established identities can later be used as basis for policy checks (e.g., access authorization).</p>
+<h2 id="enforce-mtls-between-all-istio-services">Enforce mTLS between all Istio services</h2>
 <ol>
-<li><p>Navigate to your cluster in the <a href="https://cloud.ibm.com/kubernetes/clusters" target="_blank">IBM Cloud Dashboard</a></p>
-</li>
-<li><p>Click on your cluster</p>
-</li>
-<li><p>Launch OpenShift web console</p>
-</li>
-<li><p>Select <strong>Administrator</strong> in the drop down and then select <strong>Operators</strong> -&gt; <strong>OperatorHub</strong></p>
-</li>
-<li><p>Search for <em>Service Mesh</em> and select <strong>Red Hat OpenShift Service Mesh</strong></p>
-</li>
-<li><p>Click <strong>Install</strong> and then <strong>Subscribe</strong></p>
-</li>
-<li><p>Click on <strong>Installed Operators</strong> and refresh the page to see the changes.</p>
-</li>
+<li>To set a mesh-wide authentication policy that enables mutual TLS, submit the following policy. This policy specifies that all workloads in the mesh will only accept encrypted requests using TLS.</li>
 </ol>
-<h2 id="deploying-the-red-hat-openshift-service-mesh-control-plane">Deploying the Red Hat OpenShift Service Mesh control plane</h2>
+<pre><code class="lang-shell">kubectl apply -f - &lt;&lt;EOF
+apiVersion: &quot;authentication.istio.io/v1alpha1&quot;
+kind: &quot;MeshPolicy&quot;
+metadata:
+  name: &quot;default&quot;
+spec:
+  peers:
+  - mtls: {}
+EOF
+</code></pre>
 <ol>
-<li>Create a new project by going to <strong>Home</strong> -&gt; <strong>Projects</strong> -&gt; <strong>Create Project</strong></li>
-<li>Enter <code>istio-system</code> in the <strong>Name</strong> and click <strong>Create</strong></li>
-<li>Navigate to <strong>Operators</strong> -&gt; <strong>Installed Operators</strong></li>
-<li>Click the <strong>Red Hat OpenShift Service Mesh Operator</strong>. </li>
-<li>Under <strong>Istio Service Mesh Control Plane</strong> click <strong>Create Instance</strong>.</li>
-<li>Then, click <strong>Create</strong>. The Operator creates Pods, services, and Service Mesh control plane components based on your configuration parameters.</li>
-<li>Navigate to <strong>Operators</strong> &#x2192; <strong>Installed Operators</strong> again.</li>
-<li>Click the <strong>Red Hat OpenShift Service Mesh Operator</strong>.</li>
-<li>Under <strong>Istio Service Mesh Member Roll</strong> click <strong>Create Instance</strong></li>
-<li>Change <code>your-project</code> to <code>guestbook</code> and delete the last line</li>
-<li>Then, click <strong>Create</strong>. </li>
+<li>To configure the client side, we need to modify our previous destination rules to use ISTIO_MUTUAL. Note: In the next version of Istio (1.5 with auto-mTLS), this step is no longer requried.</li>
 </ol>
-<p>Congratulations! You successfully installed Istio into your cluster and configured the <code>guestbook</code> project to use it.</p>
+<pre><code class="lang-shell">kubectl replace -f - &lt;&lt;EOF
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata:
+  name: destination-rule-guestbook
+spec:
+  host: guestbook
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+  subsets:
+    - name: v1
+      labels:
+        version: &apos;1.0&apos;
+    - name: v2
+      labels:
+        version: &apos;2.0&apos;
+EOF
+</code></pre>
+<ol>
+<li>Visit your guestbook application by going to it in your browser. Everything should be working as expected! To confirm mTLS is infact enabled, you can run:<pre><code class="lang-shell">istioctl x describe service guestbook
+</code></pre>
+Example output<pre><code>Service: guestbook
+Port: http 80/HTTP targets pod port 3000
+DestinationRule: destination-rule-guestbook for &quot;guestbook&quot;
+Matching subsets: v1,v2
+Traffic Policy TLS Mode: ISTIO_MUTUAL
+Pod is STRICT and clients are ISTIO_MUTUAL
+</code></pre></li>
+</ol>
+<h2 id="thank-you--survey">THANK YOU &amp; SURVEY!</h2>
+<p>Thank you so much for your time today!  You&apos;ve done an excellent job making it through the material.</p>
+<h2 id="further-reading">Further Reading</h2>
+<ul>
+<li><p><a href="https://dzone.com/articles/tlsssl-terminology-and-basics" target="_blank">Basic TLS/SSL Terminology</a></p>
+</li>
+<li><p><a href="https://www.ibm.com/support/knowledgecenter/en/SSFKSJ_7.1.0/com.ibm.mq.doc/sy10660_.htm" target="_blank">TLS Handshake Explained</a></p>
+</li>
+<li><p><a href="https://istio.io/docs/tasks/security/mutual-tls.html" target="_blank">Istio Task</a></p>
+</li>
+<li><p><a href="https://istio.io/docs/concepts/security/mutual-tls.html" target="_blank">Istio Concept</a></p>
+</li>
+</ul>
 
                                 
                                 </section>
@@ -349,14 +397,10 @@
 
             
                 
-                <a href="../exercise-1/" class="navigation navigation-prev " aria-label="Previous page: Access your cluster">
+                <a href="../exercise-6/" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Perform traffic management">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
-                
-                <a href="../exercise-3/" class="navigation navigation-next " aria-label="Next page: Deploy Guestbook app">
-                    <i class="fa fa-angle-right"></i>
-                </a>
                 
             
         
@@ -365,7 +409,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installing Service Mesh","level":"2.2","depth":1,"next":{"title":"Deploy Guestbook app","level":"2.3","depth":1,"path":"exercise-3/README.md","ref":"exercise-3/README.md","articles":[]},"previous":{"title":"Access your cluster","level":"2.1","depth":1,"path":"exercise-1/README.md","ref":"exercise-1/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"exercise-2/README.md","mtime":"2020-03-11T21:11:07.764Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-11T21:12:11.642Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Secure your mesh","level":"2.7","depth":1,"previous":{"title":"Perform traffic management","level":"2.6","depth":1,"path":"exercise-6/README.md","ref":"exercise-6/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"exercise-7/README.md","mtime":"2020-03-11T21:11:07.764Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-11T21:12:11.642Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
