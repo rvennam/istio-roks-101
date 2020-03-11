@@ -1,0 +1,31 @@
+{
+    "root": "workshop",
+    "title": "Istio on ROKS",
+    "pluginsConfig": {
+        "theme-default": {
+            "showLevel": true
+        },
+        "fancybox": {
+            "openEffect": "elastic",
+            "closeEffect": "elastic"
+        },
+        "prism": {
+            "css": [
+                "prismjs/themes/prism-tomorrow.css"
+            ]
+        },
+        "webheader": {
+            "headerTitle": "Istio on ROKS"
+        }
+    },
+    "plugins": [
+        "collapsible-chapters",
+        "hints",
+        "copy-code-button",
+        "back-to-top-button",
+        "fancybox",
+        "web-header",
+        "codetabs"
+    ],
+    "gitbook": "3.2.3"
+}
