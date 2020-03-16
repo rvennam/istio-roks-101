@@ -4,7 +4,7 @@ The components deployed on the service mesh by default are not exposed outside t
 
 An Ingress Gateway resource can be created to allow external requests through the Istio Ingress Gateway to the backing services.
 
-![](README_images/withistio.svg)
+![](../README_images/withistio.svg)
 
 ### Expose the BookInfo app with Ingress Gateway
 
@@ -34,11 +34,8 @@ export INGRESS_HOST=istio-ingressgateway-istio-system.rvennamocpcluster-c8427b5c
 
 Congratulations! You extended the base Ingress features by providing a DNS entry to the Istio service.
 
-Visit the application by going to http://<INGRESS_HOST>/productpage in a new tab.
+Visit the application by going to `http://<INGRESS_HOST>/productpage` in a new tab.
 
-## References:
-[Kubernetes Ingress](https://kubernetes.io/docs/concepts/services-networking/ingress/)
-[Istio Ingress](https://istio.io/docs/tasks/traffic-management/ingress.html)
-[Bring your own ALB](https://www.ibm.com/blogs/bluemix/2019/04/bring-your-own-alb-dns-with-health-checks-and-ssl-certificates-beta/)
+![](../README_images/bookinfo.png)
 
 #### [Continue to Exercise 5 - Traffic Management](../exercise-5/README.md)

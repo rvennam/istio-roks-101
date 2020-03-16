@@ -27,7 +27,7 @@ for i in {1..20}; do sleep 0.5; curl $INGRESS_HOST; done
 3. Click on Home -> Istio -> Istio Service Dashboard.
 4. Select `bookinfo` in the Service drop down.
 
-![](../README_images/grafana.png)
+![](../README_images/bookinfo-grafana.png)
 
 This Grafana dashboard provides metrics for each workload. Explore the other dashboards provided as well.
 
@@ -45,7 +45,7 @@ Kiali is an open-source project that installs as an add-on on top of Istio to vi
 
 Kiali has a number of views to help you visualize your services. Click through the various tabs to explore the service graph, and the various views for workloads, applications and services.
 
-![](../README_images/kiali.png) 
+![](../README_images/bookinfo-kiali.png) 
 
 
 

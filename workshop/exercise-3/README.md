@@ -2,7 +2,7 @@
 
 The BookInfo app is a sample app for users to leave comments. It consists of a web front end, Redis master for storage, and a replicated set of Redis slaves. We will also integrate the app with Watson Tone Analyzer which detects the sentiment in users' comments and replies with emoticons.
 
-![](README_images/withistio.svg)
+![](../README_images/withistio.svg)
 
 
 ### Enable the automatic sidecar injection for the bookinfo namespace
