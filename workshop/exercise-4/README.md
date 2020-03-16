@@ -4,7 +4,7 @@ The components deployed on the service mesh by default are not exposed outside t
 
 An Ingress Gateway resource can be created to allow external requests through the Istio Ingress Gateway to the backing services.
 
-![](../README_images/istio-openshift.jpg)
+![](../README_images/istio-openshift.png)
 
 ### Expose the Guestbook app with Ingress Gateway
 
@@ -41,4 +41,4 @@ Congratulations! You extended the base Ingress features by providing a DNS entry
 [Istio Ingress](https://istio.io/docs/tasks/traffic-management/ingress.html)
 [Bring your own ALB](https://www.ibm.com/blogs/bluemix/2019/04/bring-your-own-alb-dns-with-health-checks-and-ssl-certificates-beta/)
 
-#### [Continue to Exercise 6 - Traffic Management](../exercise-6/README.md)
+#### [Continue to Exercise 5 - Traffic Management](../exercise-5/README.md)

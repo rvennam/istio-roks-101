@@ -114,3 +114,5 @@ You've completed the getting started! Let's recap -- in this section, you:
 
 * Got an OpenShift cluster and accessed its Web Console.
 * Connected your local CLI to a running OpenShift cluster on IBM Cloud
+
+#### [Continue to Exercise 2](../exercise-2/README.md)

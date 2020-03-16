@@ -13,9 +13,9 @@ You can read more about how [Istio mixer enables telemetry reporting](https://is
 
 Generate a small load to the app by sending traffic to the Ingress host location you set in the last exercise.
 
-    ```shell
-    for i in {1..20}; do sleep 0.5; curl $INGRESS_HOST; done
-    ```
+```shell
+for i in {1..20}; do sleep 0.5; curl $INGRESS_HOST; done
+```
 
 ## View guestbook telemetry data
 
@@ -49,4 +49,4 @@ Kiali has a number of views to help you visualize your services. Click through t
 
 
 
-#### [Continue to the next Exercise](../exercise-4b/README.md)
+#### [Continue to the next Exercise](../exercise-6/README.md)

@@ -39,3 +39,6 @@ ServiceMeshMemberRoll resource is used to to specify the namespaces associated w
 5. Then, click **Create**. 
     
 Congratulations! You successfully installed Istio into your cluster and configured the `guestbook` project to use it.
+
+
+#### [Continue to Exercise 3 - Guestbook](../exercise-3/README.md)
