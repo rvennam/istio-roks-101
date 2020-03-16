@@ -2,7 +2,8 @@
 [Istio](https://www.ibm.com/cloud/info/istio) is an open platform to connect, secure, control and observe microservices, also known as a service mesh, on cloud platforms such as Kubernetes in OpenShift. With Istio, you can manage network traffic, load balance across microservices, enforce access policies, verify service identity, secure service communication and observe what exactly is going on with your services.
 
 ![Istio Service Mesh Explained](http://img.youtube.com/vi/6zDrLvpfCK4/0.jpg)
-![](https://youtu.be/6zDrLvpfCK4)
+
+![https://youtu.be/6zDrLvpfCK4](https://youtu.be/6zDrLvpfCK4)
 
 Based on the open source Istio project, Red Hat OpenShift Service Mesh adds a transparent layer on existing distributed applications. Red Hat OpenShift Service Mesh provides a platform for behavioral insight and operational control over your networked microservices in a service mesh. With Red Hat OpenShift Service Mesh, you can connect, secure, and monitor microservices in your OpenShift Container Platform environment.
 
