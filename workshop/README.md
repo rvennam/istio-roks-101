@@ -7,12 +7,12 @@
 
 Based on the open source Istio project, Red Hat OpenShift Service Mesh adds a transparent layer on existing distributed applications. Red Hat OpenShift Service Mesh provides a platform for behavioral insight and operational control over your networked microservices in a service mesh. With Red Hat OpenShift Service Mesh, you can connect, secure, and monitor microservices in your OpenShift Container Platform environment.
 
-In this course, you can see how to install Service Mesh alongside microservices for a simple mock app called [Guestbook](https://github.com/IBM/guestbook). 
+In this course, you can see how to install Service Mesh alongside microservices for a simple mock app called BookInfo
 
 ## Objectives
 After you complete this course, you'll be able to:
 - Install Red Hat OpenShift Service Mesh in your cluster
-- Deploy the Guestbook sample app
+- Deploy the BookInfo sample app
 - Use metrics, logging and tracing to observe services
 - Set up the Istio Ingress Gateway
 - Perform simple traffic management, such as A/B tests and canary deployments
@@ -26,7 +26,7 @@ After you complete this course, you'll be able to:
 * [Installing Service Mesh](exercise-2/README.md)
 
 ## Deploy Sample
-* [Deploy Guestbook app](exercise-3/README.md)
+* [Deploy BookInfo app](exercise-3/README.md)
 * [Expose the app using Ingress](exercise-4/README.md)
 
 ## Use Istio

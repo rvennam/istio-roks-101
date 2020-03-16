@@ -35,10 +35,10 @@ ServiceMeshMemberRoll resource is used to to specify the namespaces associated w
 1. Navigate to **Operators** → **Installed Operators** again.
 2. Click the **Red Hat OpenShift Service Mesh Operator**.
 3. Under **Istio Service Mesh Member Roll** click **Create Instance**
-4. Change `your-project` to `guestbook` and delete the last line.
+4. Change `your-project` to `bookinfo` and delete the last line.
 5. Then, click **Create**. 
     
-Congratulations! You successfully installed Istio into your cluster and configured the `guestbook` project to use it.
+Congratulations! You successfully installed Istio into your cluster and configured the `bookinfo` project to use it.
 
 
-#### [Continue to Exercise 3 - Guestbook](../exercise-3/README.md)
+#### [Continue to Exercise 3 - BookInfo](../exercise-3/README.md)

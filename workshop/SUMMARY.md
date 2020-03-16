@@ -7,7 +7,7 @@
 * [Installing Service Mesh](exercise-2/README.md)
 
 ## Deploy Sample
-* [Deploy Guestbook app](exercise-3/README.md)
+* [Deploy BookInfo app](exercise-3/README.md)
 * [Expose the app using Ingress](exercise-4/README.md)
 
 ## Use Istio
