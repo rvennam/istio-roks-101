@@ -33,12 +33,20 @@ In Kubernetes, a sidecar is a utility container in the pod, and its purpose is t
     ...
     ```
 
+
+## Clone application source repo
+
+    ```shell
+    git clone https://github.com/rvennam/istio-roks-101
+    cd istio-roks-101/bookinfo
+    ```
+
 ## Install the BookInfo app
 
 1. Inject the Istio Envoy sidecar into the bookinfo pods, and deploy the BookInfo app on to the Kubernetes cluster. Deploy both the v1 and v2 versions of the app:
 
     ```shell
-    oc apply -f bookinfo/bookinfo.yaml
+    oc apply -f bookinfo.yaml
     ```
 
 These commands deploy the BookInfo app on to the cluster. Since we enabled automation sidecar injection, these pods will be also include an Envoy sidecar as they are started in the cluster. Here we have two versions of deployments, a new version (`v2`) in the current directory, and a previous version (`v1`) in a sibling directory. They will be used in future sections to showcase the Istio traffic routing capabilities.

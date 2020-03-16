@@ -29,7 +29,7 @@ When Envoy proxies establish a connection, they exchange and validate certificat
 1.  To configure mTLS, we need to modify our previous destination rules to use ISTIO_MUTUAL. 
 
 ```shell
-kubectl replace -f bookinfo/destination-rule-all-mtls.yaml
+kubectl replace -f destination-rule-all-mtls.yaml
 ```
 
 2. Send more traffic to your application. Everything should still continue to work as expected.

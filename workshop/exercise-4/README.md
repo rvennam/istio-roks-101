@@ -11,7 +11,7 @@ An Ingress Gateway resource can be created to allow external requests through th
 1. Configure the bookinfo default route with the Istio Ingress Gateway. 
 
     ```shell
-    oc create -f bookinfo/bookinfo-gateway.yaml
+    oc create -f bookinfo-gateway.yaml
     ```
 
 2. Get the **ROUTE** of the Istio Ingress Gateway.
