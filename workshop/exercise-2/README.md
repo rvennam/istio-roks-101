@@ -2,20 +2,20 @@
 
 
 ## Install the Operator
+
+![](assets/../../assets/operatorhub-istio.png)
   
-1.  Navigate to your cluster in the [IBM Cloud Dashboard](https://cloud.ibm.com/kubernetes/clusters)
+1. Navigate to your cluster in the [IBM Cloud Dashboard](https://cloud.ibm.com/kubernetes/clusters)
 
-2. Click on your cluster
+2. Click on your cluster and Launch **OpenShift web console**
 
-3. Launch OpenShift web console
+3. Select **Administrator** in the drop down and then select **Operators** -> **OperatorHub**
 
-4. Select **Administrator** in the drop down and then select **Operators** -> **OperatorHub**
+4. Search for *Service Mesh* and select **Red Hat OpenShift Service Mesh**
 
-5. Search for *Service Mesh* and select **Red Hat OpenShift Service Mesh**
+5. Click **Install** and then **Subscribe**
 
-6. Click **Install** and then **Subscribe**
-
-7. Click on **Installed Operators** and refresh the page to see the changes.
+6. Click on **Installed Operators** and refresh the page to see the changes.
 
 
 ## Deploying the Red Hat OpenShift Service Mesh control plane
@@ -26,10 +26,16 @@
 4.  Click the **Red Hat OpenShift Service Mesh Operator**. 
 5.  Under **Istio Service Mesh Control Plane** click **Create Instance**.
 6.  Then, click **Create**. The Operator creates Pods, services, and Service Mesh control plane components based on your configuration parameters.
-7.  Navigate to **Operators** → **Installed Operators** again.
-8.  Click the **Red Hat OpenShift Service Mesh Operator**.
-9.  Under **Istio Service Mesh Member Roll** click **Create Instance**
-10. Change `your-project` to `guestbook` and delete the last line
-11. Then, click **Create**. 
+
+### Create a ServiceMeshMemberRoll
+ServiceMeshMemberRoll resource is used to to specify the namespaces associated with the Service Mesh.
+
+![](assets/../../assets/servicemeshmemberroll.png)
+
+1. Navigate to **Operators** → **Installed Operators** again.
+2. Click the **Red Hat OpenShift Service Mesh Operator**.
+3. Under **Istio Service Mesh Member Roll** click **Create Instance**
+4. Change `your-project` to `guestbook` and delete the last line.
+5. Then, click **Create**. 
     
 Congratulations! You successfully installed Istio into your cluster and configured the `guestbook` project to use it.

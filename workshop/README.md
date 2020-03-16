@@ -1,29 +1,31 @@
-# Beyond the Basics: Istio and IBM Cloud Kubernetes Service
-[Istio](https://www.ibm.com/cloud/info/istio) is an open platform to connect, secure, control and observe microservices, also known as a service mesh, on cloud platforms such as Kubernetes in IBM Cloud Kubernetes Service and VMs. With Istio, You can manage network traffic, load balance across microservices, enforce access policies, verify service identity, secure service communication and observe what exactly is going on with your services.
+# Istio and Red Hat OpenShift on IBM Cloud
+[Istio](https://www.ibm.com/cloud/info/istio) is an open platform to connect, secure, control and observe microservices, also known as a service mesh, on cloud platforms such as Kubernetes in OpenShift. With Istio, you can manage network traffic, load balance across microservices, enforce access policies, verify service identity, secure service communication and observe what exactly is going on with your services.
 
-In this course, you can see how to install Istio alongside microservices for a simple mock app called [Guestbook](https://github.com/IBM/guestbook). When you deploy Guestbook's microservices into an IBM Cloud Kubernetes Service cluster where Istio is installed, you can choose to inject the Istio Envoy sidecar proxies in the pods of certain microservices.
+Based on the open source Istio project, Red Hat OpenShift Service Mesh adds a transparent layer on existing distributed applications. Red Hat OpenShift Service Mesh provides a platform for behavioral insight and operational control over your networked microservices in a service mesh. With Red Hat OpenShift Service Mesh, you can connect, secure, and monitor microservices in your OpenShift Container Platform environment.
+
+In this course, you can see how to install Service Mesh alongside microservices for a simple mock app called [Guestbook](https://github.com/IBM/guestbook). 
 
 ## Objectives
 After you complete this course, you'll be able to:
-- Download and install Istio in your cluster
+- Install Red Hat OpenShift Service Mesh in your cluster
 - Deploy the Guestbook sample app
 - Use metrics, logging and tracing to observe services
 - Set up the Istio Ingress Gateway
 - Perform simple traffic management, such as A/B tests and canary deployments
-
+- Secure your mesh using mTLS
 
 ## Architecture
 ![](README_images/architecture.png)
 
-[Get Started](GETSTARTED.md)
-
 ## Workshop setup
-- [Exercise 1 - Accessing a Kubernetes cluster with IBM Cloud Kubernetes Service](exercise-1/README.md)
-- [Exercise 2 - Installing Istio](exercise-2/README.md)
-- [Exercise 3 - Deploying Guestbook sample application](exercise-3/README.md)
+* [Access your cluster](exercise-1/README.md)
+* [Installing Service Mesh](exercise-2/README.md)
 
-## Creating a service mesh with Istio
+## Deploy Sample
+* [Deploy Guestbook app](exercise-3/README.md)
+* [Expose the app using Ingress](exercise-4/README.md)
 
-- [Exercise 4 - Observe service telemetry: metrics and tracing](exercise-4/README.md)
-- [Exercise 5 - Expose the service mesh with the Istio Ingress Gateway](exercise-5/README.md)
-- [Exercise 6 - Perform traffic management](exercise-6/README.md)
+## Use Istio
+* [Observability](exercise-5/README.md)
+* [Perform traffic management](exercise-6/README.md)
+* [Secure your mesh](exercise-7/README.md)

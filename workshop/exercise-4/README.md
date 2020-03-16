@@ -1,10 +1,10 @@
-# Exercise 4 - Expose the app with the Istio Ingress Gateway
+# Exercise 4 - Expose the app with the Istio Ingress Gateway and Route
 
 The components deployed on the service mesh by default are not exposed outside the cluster. External access to individual services so far has been provided by creating an external load balancer or node port on each service.
 
 An Ingress Gateway resource can be created to allow external requests through the Istio Ingress Gateway to the backing services.
 
-![](../README_images/istio2.jpg)
+![](../README_images/istio-openshift.jpg)
 
 ### Expose the Guestbook app with Ingress Gateway
 

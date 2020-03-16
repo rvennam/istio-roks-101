@@ -173,25 +173,11 @@ Create Watson Tone Analyzer in your own account.
     ibmcloud resource service-key tone-analyzer-key
     ``` 
 
-1. Open the web file browser by clicking the Pen icon. 
+2.  Edit `analyzer-deployment.yaml` with `nano` or `vi`.
 
-    ![](../README_images/fileeditor.png)
+3. Find the env section near the end of the file. Replace YOUR_API_KEY with the API_KEY provided earlier. YOUR_URL should be edited to be `https://gateway.watsonplatform.net/tone-analyzer/api`. If you created the service in `au-syd`, this URL should instead be: `https://gateway-syd.watsonplatform.net/tone-analyzer/api` Save the file and close the web file browser.
 
-1. Click on the File Explorer icon to see the available files.
-
-    ![](../README_images/file_explorer.png)
-
-1. Navigate to `istio101/workshop/guestbook/v2/analyzer-deployment.yaml`
-
-![](../README_images/fileeditor2.png)
-
-
-1. Find the env section near the end of the file. Replace YOUR_API_KEY with the API_KEY provided earlier. YOUR_URL should be edited to be `https://gateway.watsonplatform.net/tone-analyzer/api`. If you created the service in `au-syd`, this URL should instead be: `https://gateway-syd.watsonplatform.net/tone-analyzer/api` Save the file and close the web file browser.
-
-
-Note: You may have trouble editing this file with some browsers, particularly Edge. If you're having trouble, try clicking the name of the file in the top tab, and then moving your cursor and making edits using the arrow keys and keyboard. `ctrl+c` is copy, and `ctrl+v` is paste.
-
-1.   Deploy the analyzer pods and service, using the `analyzer-deployment.yaml` and `analyzer-service.yaml` files found in the `guestbook/v2` directory. The analyzer service talks to Watson Tone Analyzer to help analyze the tone of a message. Ensure you are still in the `guestbook/v2` directory.
+4.   Deploy the analyzer pods and service, using the `analyzer-deployment.yaml` and `analyzer-service.yaml` files found in the `guestbook/v2` directory. The analyzer service talks to Watson Tone Analyzer to help analyze the tone of a message. Ensure you are still in the `guestbook/v2` directory.
 
       ```shell
       oc apply -f analyzer-deployment.yaml

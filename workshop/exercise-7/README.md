@@ -63,20 +63,6 @@ spec:
 EOF
 ```
 
-3. Visit your guestbook application by going to it in your browser. Everything should be working as expected! To confirm mTLS is infact enabled, you can run:
-```shell
-istioctl x describe service guestbook
-```
-Example output
-```
-Service: guestbook
-   Port: http 80/HTTP targets pod port 3000
-DestinationRule: destination-rule-guestbook for "guestbook"
-   Matching subsets: v1,v2
-   Traffic Policy TLS Mode: ISTIO_MUTUAL
-Pod is STRICT and clients are ISTIO_MUTUAL
-```
-
 ## THANK YOU & SURVEY!
 
 Thank you so much for your time today!  You've done an excellent job making it through the material.
