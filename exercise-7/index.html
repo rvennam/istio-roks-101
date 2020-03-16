@@ -326,40 +326,19 @@ Envoys then use the certificates to identify each other and establish an authent
 <p>When Envoy proxies establish a connection, they exchange and validate certificates to confirm that each is indeed connected to a valid and expected peer. The established identities can later be used as basis for policy checks (e.g., access authorization).</p>
 <h2 id="enforce-mtls-between-all-istio-services">Enforce mTLS between all Istio services</h2>
 <ol>
-<li>To set a mesh-wide authentication policy that enables mutual TLS, submit the following policy. This policy specifies that all workloads in the mesh will only accept encrypted requests using TLS.</li>
+<li>To configure mTLS, we need to modify our previous destination rules to use ISTIO_MUTUAL. </li>
 </ol>
-<pre><code class="lang-shell">kubectl apply -f - &lt;&lt;EOF
-apiVersion: &quot;authentication.istio.io/v1alpha1&quot;
-kind: &quot;MeshPolicy&quot;
-metadata:
-  name: &quot;default&quot;
-spec:
-  peers:
-  - mtls: {}
-EOF
+<pre><code class="lang-shell">kubectl replace -f bookinfo/destination-rule-all-mtls.yaml
 </code></pre>
 <ol>
-<li>To configure the client side, we need to modify our previous destination rules to use ISTIO_MUTUAL. Note: In the next version of Istio (1.5 with auto-mTLS), this step is no longer requried.</li>
+<li><p>Send more traffic to your application. Everything should still continue to work as expected.</p>
+</li>
+<li><p>Launch Kiali again and confirm that traffic is encrypted.</p>
+</li>
 </ol>
-<pre><code class="lang-shell">kubectl replace -f - &lt;&lt;EOF
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
-metadata:
-  name: destination-rule-guestbook
-spec:
-  host: guestbook
-  trafficPolicy:
-    tls:
-      mode: ISTIO_MUTUAL
-  subsets:
-    - name: v1
-      labels:
-        version: &apos;1.0&apos;
-    - name: v2
-      labels:
-        version: &apos;2.0&apos;
-EOF
-</code></pre>
+<p>     <a href="../README_images/kiali-security.png" rel="grouped" title="" target="_self" class="fancybox">
+       <img src="../README_images/kiali-security.png" alt="">
+     </a></p>
 <h2 id="thank-you--survey">THANK YOU &amp; SURVEY!</h2>
 <p>Thank you so much for your time today!  You&apos;ve done an excellent job making it through the material.</p>
 <h2 id="further-reading">Further Reading</h2>
@@ -412,7 +391,7 @@ EOF
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Secure your mesh","level":"4.3","depth":1,"previous":{"title":"Perform traffic management","level":"4.2","depth":1,"path":"exercise-6/README.md","ref":"exercise-6/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"exercise-7/README.md","mtime":"2020-03-16T16:34:27.376Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-16T16:35:31.095Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Secure your mesh","level":"4.3","depth":1,"previous":{"title":"Perform traffic management","level":"4.2","depth":1,"path":"exercise-6/README.md","ref":"exercise-6/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"exercise-7/README.md","mtime":"2020-03-16T17:32:14.698Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-16T17:33:19.111Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
