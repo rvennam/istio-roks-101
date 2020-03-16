@@ -169,12 +169,19 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3" data-path="../exercise-3/">
+
+    
+        
+        <li class="header">Deploy Sample</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../exercise-3/">
             
                 <a href="../exercise-3/">
             
                     
-                        <b>2.3.</b>
+                        <b>3.1.</b>
                     
                     Deploy Guestbook app
             
@@ -184,12 +191,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="../exercise-4/">
+        <li class="chapter " data-level="3.2" data-path="../exercise-4/">
             
                 <a href="../exercise-4/">
             
                     
-                        <b>2.4.</b>
+                        <b>3.2.</b>
                     
                     Expose the app using Ingress
             
@@ -199,12 +206,19 @@
             
         </li>
     
-        <li class="chapter " data-level="2.5" data-path="../exercise-5/">
+
+    
+        
+        <li class="header">Use Istio</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../exercise-5/">
             
                 <a href="../exercise-5/">
             
                     
-                        <b>2.5.</b>
+                        <b>4.1.</b>
                     
                     Observability
             
@@ -214,12 +228,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.6" data-path="../exercise-6/">
+        <li class="chapter " data-level="4.2" data-path="../exercise-6/">
             
                 <a href="../exercise-6/">
             
                     
-                        <b>2.6.</b>
+                        <b>4.2.</b>
                     
                     Perform traffic management
             
@@ -229,12 +243,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../exercise-7/">
+        <li class="chapter " data-level="4.3" data-path="../exercise-7/">
             
                 <a href="../exercise-7/">
             
                     
-                        <b>2.7.</b>
+                        <b>4.3.</b>
                     
                     Secure your mesh
             
@@ -291,12 +305,13 @@
                                 
                                 <h1 id="exercise-2---installing-istio-on-ibm-cloud-kubernetes-service">Exercise 2 - Installing Istio on IBM Cloud Kubernetes Service</h1>
 <h2 id="install-the-operator">Install the Operator</h2>
+<p>     <a href="../assets/operatorhub-istio.png" rel="grouped" title="" target="_self" class="fancybox">
+       <img src="../assets/operatorhub-istio.png" alt="">
+     </a></p>
 <ol>
 <li><p>Navigate to your cluster in the <a href="https://cloud.ibm.com/kubernetes/clusters" target="_blank">IBM Cloud Dashboard</a></p>
 </li>
-<li><p>Click on your cluster</p>
-</li>
-<li><p>Launch OpenShift web console</p>
+<li><p>Click on your cluster and Launch <strong>OpenShift web console</strong></p>
 </li>
 <li><p>Select <strong>Administrator</strong> in the drop down and then select <strong>Operators</strong> -&gt; <strong>OperatorHub</strong></p>
 </li>
@@ -315,10 +330,17 @@
 <li>Click the <strong>Red Hat OpenShift Service Mesh Operator</strong>. </li>
 <li>Under <strong>Istio Service Mesh Control Plane</strong> click <strong>Create Instance</strong>.</li>
 <li>Then, click <strong>Create</strong>. The Operator creates Pods, services, and Service Mesh control plane components based on your configuration parameters.</li>
+</ol>
+<h3 id="create-a-servicemeshmemberroll">Create a ServiceMeshMemberRoll</h3>
+<p>ServiceMeshMemberRoll resource is used to to specify the namespaces associated with the Service Mesh.</p>
+<p>     <a href="../assets/servicemeshmemberroll.png" rel="grouped" title="" target="_self" class="fancybox">
+       <img src="../assets/servicemeshmemberroll.png" alt="">
+     </a></p>
+<ol>
 <li>Navigate to <strong>Operators</strong> &#x2192; <strong>Installed Operators</strong> again.</li>
 <li>Click the <strong>Red Hat OpenShift Service Mesh Operator</strong>.</li>
 <li>Under <strong>Istio Service Mesh Member Roll</strong> click <strong>Create Instance</strong></li>
-<li>Change <code>your-project</code> to <code>guestbook</code> and delete the last line</li>
+<li>Change <code>your-project</code> to <code>guestbook</code> and delete the last line.</li>
 <li>Then, click <strong>Create</strong>. </li>
 </ol>
 <p>Congratulations! You successfully installed Istio into your cluster and configured the <code>guestbook</code> project to use it.</p>
@@ -365,7 +387,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installing Service Mesh","level":"2.2","depth":1,"next":{"title":"Deploy Guestbook app","level":"2.3","depth":1,"path":"exercise-3/README.md","ref":"exercise-3/README.md","articles":[]},"previous":{"title":"Access your cluster","level":"2.1","depth":1,"path":"exercise-1/README.md","ref":"exercise-1/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"exercise-2/README.md","mtime":"2020-03-11T21:20:03.796Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-11T21:21:12.330Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installing Service Mesh","level":"2.2","depth":1,"next":{"title":"Deploy Guestbook app","level":"3.1","depth":1,"path":"exercise-3/README.md","ref":"exercise-3/README.md","articles":[]},"previous":{"title":"Access your cluster","level":"2.1","depth":1,"path":"exercise-1/README.md","ref":"exercise-1/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"exercise-2/README.md","mtime":"2020-03-16T12:50:57.488Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-16T12:52:07.226Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

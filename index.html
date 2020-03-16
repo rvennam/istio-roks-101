@@ -167,12 +167,19 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3" data-path="exercise-3/">
+
+    
+        
+        <li class="header">Deploy Sample</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="exercise-3/">
             
                 <a href="exercise-3/">
             
                     
-                        <b>2.3.</b>
+                        <b>3.1.</b>
                     
                     Deploy Guestbook app
             
@@ -182,12 +189,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="exercise-4/">
+        <li class="chapter " data-level="3.2" data-path="exercise-4/">
             
                 <a href="exercise-4/">
             
                     
-                        <b>2.4.</b>
+                        <b>3.2.</b>
                     
                     Expose the app using Ingress
             
@@ -197,12 +204,19 @@
             
         </li>
     
-        <li class="chapter " data-level="2.5" data-path="exercise-5/">
+
+    
+        
+        <li class="header">Use Istio</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="exercise-5/">
             
                 <a href="exercise-5/">
             
                     
-                        <b>2.5.</b>
+                        <b>4.1.</b>
                     
                     Observability
             
@@ -212,12 +226,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.6" data-path="exercise-6/">
+        <li class="chapter " data-level="4.2" data-path="exercise-6/">
             
                 <a href="exercise-6/">
             
                     
-                        <b>2.6.</b>
+                        <b>4.2.</b>
                     
                     Perform traffic management
             
@@ -227,12 +241,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="exercise-7/">
+        <li class="chapter " data-level="4.3" data-path="exercise-7/">
             
                 <a href="exercise-7/">
             
                     
-                        <b>2.7.</b>
+                        <b>4.3.</b>
                     
                     Secure your mesh
             
@@ -287,34 +301,39 @@
     
                                 <section class="normal markdown-section">
                                 
-                                <h1 id="beyond-the-basics-istio-and-ibm-cloud-kubernetes-service">Beyond the Basics: Istio and IBM Cloud Kubernetes Service</h1>
-<p><a href="https://www.ibm.com/cloud/info/istio" target="_blank">Istio</a> is an open platform to connect, secure, control and observe microservices, also known as a service mesh, on cloud platforms such as Kubernetes in IBM Cloud Kubernetes Service and VMs. With Istio, You can manage network traffic, load balance across microservices, enforce access policies, verify service identity, secure service communication and observe what exactly is going on with your services.</p>
-<p>In this course, you can see how to install Istio alongside microservices for a simple mock app called <a href="https://github.com/IBM/guestbook" target="_blank">Guestbook</a>. When you deploy Guestbook&apos;s microservices into an IBM Cloud Kubernetes Service cluster where Istio is installed, you can choose to inject the Istio Envoy sidecar proxies in the pods of certain microservices.</p>
+                                <h1 id="istio-and-red-hat-openshift-on-ibm-cloud">Istio and Red Hat OpenShift on IBM Cloud</h1>
+<p><a href="https://www.ibm.com/cloud/info/istio" target="_blank">Istio</a> is an open platform to connect, secure, control and observe microservices, also known as a service mesh, on cloud platforms such as Kubernetes in OpenShift. With Istio, you can manage network traffic, load balance across microservices, enforce access policies, verify service identity, secure service communication and observe what exactly is going on with your services.</p>
+<p>Based on the open source Istio project, Red Hat OpenShift Service Mesh adds a transparent layer on existing distributed applications. Red Hat OpenShift Service Mesh provides a platform for behavioral insight and operational control over your networked microservices in a service mesh. With Red Hat OpenShift Service Mesh, you can connect, secure, and monitor microservices in your OpenShift Container Platform environment.</p>
+<p>In this course, you can see how to install Service Mesh alongside microservices for a simple mock app called <a href="https://github.com/IBM/guestbook" target="_blank">Guestbook</a>. </p>
 <h2 id="objectives">Objectives</h2>
 <p>After you complete this course, you&apos;ll be able to:</p>
 <ul>
-<li>Download and install Istio in your cluster</li>
+<li>Install Red Hat OpenShift Service Mesh in your cluster</li>
 <li>Deploy the Guestbook sample app</li>
 <li>Use metrics, logging and tracing to observe services</li>
 <li>Set up the Istio Ingress Gateway</li>
 <li>Perform simple traffic management, such as A/B tests and canary deployments</li>
+<li>Secure your mesh using mTLS</li>
 </ul>
 <h2 id="architecture">Architecture</h2>
 <p>     <a href="README_images/architecture.png" rel="grouped" title="" target="_self" class="fancybox">
        <img src="README_images/architecture.png" alt="">
      </a></p>
-<p><a href="GETSTARTED.md">Get Started</a></p>
 <h2 id="workshop-setup">Workshop setup</h2>
 <ul>
-<li><a href="exercise-1/">Exercise 1 - Accessing a Kubernetes cluster with IBM Cloud Kubernetes Service</a></li>
-<li><a href="exercise-2/">Exercise 2 - Installing Istio</a></li>
-<li><a href="exercise-3/">Exercise 3 - Deploying Guestbook sample application</a></li>
+<li><a href="exercise-1/">Access your cluster</a></li>
+<li><a href="exercise-2/">Installing Service Mesh</a></li>
 </ul>
-<h2 id="creating-a-service-mesh-with-istio">Creating a service mesh with Istio</h2>
+<h2 id="deploy-sample">Deploy Sample</h2>
 <ul>
-<li><a href="exercise-4/">Exercise 4 - Observe service telemetry: metrics and tracing</a></li>
-<li><a href="exercise-5/">Exercise 5 - Expose the service mesh with the Istio Ingress Gateway</a></li>
-<li><a href="exercise-6/">Exercise 6 - Perform traffic management</a></li>
+<li><a href="exercise-3/">Deploy Guestbook app</a></li>
+<li><a href="exercise-4/">Expose the app using Ingress</a></li>
+</ul>
+<h2 id="use-istio">Use Istio</h2>
+<ul>
+<li><a href="exercise-5/">Observability</a></li>
+<li><a href="exercise-6/">Perform traffic management</a></li>
+<li><a href="exercise-7/">Secure your mesh</a></li>
 </ul>
 
                                 
@@ -355,7 +374,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Access your cluster","level":"2.1","depth":1,"path":"exercise-1/README.md","ref":"exercise-1/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"README.md","mtime":"2018-11-11T11:11:11.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-11T21:21:12.330Z"},"basePath":".","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Introduction","level":"1.1","depth":1,"next":{"title":"Access your cluster","level":"2.1","depth":1,"path":"exercise-1/README.md","ref":"exercise-1/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"README.md","mtime":"2018-11-11T11:11:11.000Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-16T12:52:07.226Z"},"basePath":".","book":{"language":""}});
         });
     </script>
 </div>

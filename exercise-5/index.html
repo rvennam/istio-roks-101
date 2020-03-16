@@ -169,12 +169,19 @@
             
         </li>
     
-        <li class="chapter " data-level="2.3" data-path="../exercise-3/">
+
+    
+        
+        <li class="header">Deploy Sample</li>
+        
+        
+    
+        <li class="chapter " data-level="3.1" data-path="../exercise-3/">
             
                 <a href="../exercise-3/">
             
                     
-                        <b>2.3.</b>
+                        <b>3.1.</b>
                     
                     Deploy Guestbook app
             
@@ -184,12 +191,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="../exercise-4/">
+        <li class="chapter " data-level="3.2" data-path="../exercise-4/">
             
                 <a href="../exercise-4/">
             
                     
-                        <b>2.4.</b>
+                        <b>3.2.</b>
                     
                     Expose the app using Ingress
             
@@ -199,12 +206,19 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.5" data-path="./">
+
+    
+        
+        <li class="header">Use Istio</li>
+        
+        
+    
+        <li class="chapter active" data-level="4.1" data-path="./">
             
                 <a href="./">
             
                     
-                        <b>2.5.</b>
+                        <b>4.1.</b>
                     
                     Observability
             
@@ -214,12 +228,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.6" data-path="../exercise-6/">
+        <li class="chapter " data-level="4.2" data-path="../exercise-6/">
             
                 <a href="../exercise-6/">
             
                     
-                        <b>2.6.</b>
+                        <b>4.2.</b>
                     
                     Perform traffic management
             
@@ -229,12 +243,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../exercise-7/">
+        <li class="chapter " data-level="4.3" data-path="../exercise-7/">
             
                 <a href="../exercise-7/">
             
                     
-                        <b>2.7.</b>
+                        <b>4.3.</b>
                     
                     Secure your mesh
             
@@ -303,8 +317,7 @@ for i in {1..20}; do sleep 0.5; curl $INGRESS_HOST; done
 <h4 id="grafana">Grafana</h4>
 <ol>
 <li>Navigate to your cluster in the <a href="https://cloud.ibm.com/kubernetes/clusters" target="_blank">IBM Cloud Dashboard</a></li>
-<li>Click on your cluster</li>
-<li>Launch <strong>OpenShift web console</strong></li>
+<li>Click on your cluster and launch <strong>OpenShift web console</strong></li>
 <li>Under <strong>Networking</strong> -&gt; <strong>Routes</strong>, select the URL next to <strong>grafana</strong></li>
 <li>Click on Home -&gt; Istio -&gt; Istio Service Dashboard.</li>
 <li>Select <code>guestbook</code> in the Service drop down.</li>
@@ -317,14 +330,13 @@ for i in {1..20}; do sleep 0.5; curl $INGRESS_HOST; done
 <p>Kiali is an open-source project that installs as an add-on on top of Istio to visualize your service mesh. It provides deeper insight into how your microservices interact with one another, and provides features such as circuit breakers and request rates for your services.</p>
 <ol>
 <li>Navigate to your cluster in the <a href="https://cloud.ibm.com/kubernetes/clusters" target="_blank">IBM Cloud Dashboard</a></li>
-<li>Click on your cluster</li>
-<li>Launch <strong>OpenShift web console</strong></li>
+<li>Click on your cluster and launch <strong>OpenShift web console</strong></li>
 <li>Under <strong>Networking</strong> -&gt; <strong>Routes</strong>, select the URL next to <strong>kiali</strong></li>
-<li>Click the &quot;Graph&quot; tab on the left side and select the default namespace to see the a visual service graph of the various services in your Istio mesh. You can see request rates as well by clicking the &quot;Edge Labels&quot; tab and choosing &quot;Traffic rate per second&quot;.<blockquote>
+<li>Click the &quot;Graph&quot; tab on the left side and select the <code>guestbook</code> and <code>istio-system</code> namespace to see the a visual service graph of the various services in your Istio mesh. You can see request rates as well by clicking the &quot;Edge Labels&quot; tab and choosing &quot;Traffic rate per second&quot;.<blockquote>
 <p>Info: You&apos;ll need to access your Guestbook application and type an entry for the graph to be generated and connected properly.</p>
 </blockquote>
 </li>
-<li>In a different tab, visit the guestbook application and refresh the page multiple times to generate some load.</li>
+<li>In a different tab, visit the guestbook application and refresh the page multiple times to generate some load, or run the load script in the previous section.</li>
 </ol>
 <p>Kiali has a number of views to help you visualize your services. Click through the various tabs to explore the service graph, and the various views for workloads, applications and services.</p>
 <p>     <a href="../README_images/kiali.png" rel="grouped" title="" target="_self" class="fancybox">
@@ -374,7 +386,7 @@ for i in {1..20}; do sleep 0.5; curl $INGRESS_HOST; done
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Observability","level":"2.5","depth":1,"next":{"title":"Perform traffic management","level":"2.6","depth":1,"path":"exercise-6/README.md","ref":"exercise-6/README.md","articles":[]},"previous":{"title":"Expose the app using Ingress","level":"2.4","depth":1,"path":"exercise-4/README.md","ref":"exercise-4/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"exercise-5/README.md","mtime":"2020-03-11T21:20:03.796Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-11T21:21:12.330Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Observability","level":"4.1","depth":1,"next":{"title":"Perform traffic management","level":"4.2","depth":1,"path":"exercise-6/README.md","ref":"exercise-6/README.md","articles":[]},"previous":{"title":"Expose the app using Ingress","level":"3.2","depth":1,"path":"exercise-4/README.md","ref":"exercise-4/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"exercise-5/README.md","mtime":"2020-03-16T12:50:57.488Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-16T12:52:07.226Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

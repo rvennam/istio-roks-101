@@ -169,12 +169,19 @@
             
         </li>
     
-        <li class="chapter active" data-level="2.3" data-path="./">
+
+    
+        
+        <li class="header">Deploy Sample</li>
+        
+        
+    
+        <li class="chapter active" data-level="3.1" data-path="./">
             
                 <a href="./">
             
                     
-                        <b>2.3.</b>
+                        <b>3.1.</b>
                     
                     Deploy Guestbook app
             
@@ -184,12 +191,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.4" data-path="../exercise-4/">
+        <li class="chapter " data-level="3.2" data-path="../exercise-4/">
             
                 <a href="../exercise-4/">
             
                     
-                        <b>2.4.</b>
+                        <b>3.2.</b>
                     
                     Expose the app using Ingress
             
@@ -199,12 +206,19 @@
             
         </li>
     
-        <li class="chapter " data-level="2.5" data-path="../exercise-5/">
+
+    
+        
+        <li class="header">Use Istio</li>
+        
+        
+    
+        <li class="chapter " data-level="4.1" data-path="../exercise-5/">
             
                 <a href="../exercise-5/">
             
                     
-                        <b>2.5.</b>
+                        <b>4.1.</b>
                     
                     Observability
             
@@ -214,12 +228,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.6" data-path="../exercise-6/">
+        <li class="chapter " data-level="4.2" data-path="../exercise-6/">
             
                 <a href="../exercise-6/">
             
                     
-                        <b>2.6.</b>
+                        <b>4.2.</b>
                     
                     Perform traffic management
             
@@ -229,12 +243,12 @@
             
         </li>
     
-        <li class="chapter " data-level="2.7" data-path="../exercise-7/">
+        <li class="chapter " data-level="4.3" data-path="../exercise-7/">
             
                 <a href="../exercise-7/">
             
                     
-                        <b>2.7.</b>
+                        <b>4.3.</b>
                     
                     Secure your mesh
             
@@ -427,27 +441,10 @@ redis-slave    ClusterIP      172.21.205.35   &lt;none&gt;          6379/TCP    
 <pre><code class="lang-shell"> ibmcloud resource service-key tone-analyzer-key
 </code></pre>
 </li>
-<li><p>Open the web file browser by clicking the Pen icon. </p>
-<p>      <a href="../README_images/fileeditor.png" rel="grouped" title="" target="_self" class="fancybox">
-       <img src="../README_images/fileeditor.png" alt="">
-     </a></p>
+<li><p>Edit <code>analyzer-deployment.yaml</code> with <code>nano</code> or <code>vi</code>.</p>
 </li>
-<li><p>Click on the File Explorer icon to see the available files.</p>
-<p>      <a href="../README_images/file_explorer.png" rel="grouped" title="" target="_self" class="fancybox">
-       <img src="../README_images/file_explorer.png" alt="">
-     </a></p>
+<li><p>Find the env section near the end of the file. Replace YOUR_API_KEY with the API_KEY provided earlier. YOUR_URL should be edited to be <code>https://gateway.watsonplatform.net/tone-analyzer/api</code>. If you created the service in <code>au-syd</code>, this URL should instead be: <code>https://gateway-syd.watsonplatform.net/tone-analyzer/api</code> Save the file and close the web file browser.</p>
 </li>
-<li><p>Navigate to <code>istio101/workshop/guestbook/v2/analyzer-deployment.yaml</code></p>
-</li>
-</ol>
-<p>     <a href="../README_images/fileeditor2.png" rel="grouped" title="" target="_self" class="fancybox">
-       <img src="../README_images/fileeditor2.png" alt="">
-     </a></p>
-<ol>
-<li>Find the env section near the end of the file. Replace YOUR_API_KEY with the API_KEY provided earlier. YOUR_URL should be edited to be <code>https://gateway.watsonplatform.net/tone-analyzer/api</code>. If you created the service in <code>au-syd</code>, this URL should instead be: <code>https://gateway-syd.watsonplatform.net/tone-analyzer/api</code> Save the file and close the web file browser.</li>
-</ol>
-<p>Note: You may have trouble editing this file with some browsers, particularly Edge. If you&apos;re having trouble, try clicking the name of the file in the top tab, and then moving your cursor and making edits using the arrow keys and keyboard. <code>ctrl+c</code> is copy, and <code>ctrl+v</code> is paste.</p>
-<ol>
 <li><p>Deploy the analyzer pods and service, using the <code>analyzer-deployment.yaml</code> and <code>analyzer-service.yaml</code> files found in the <code>guestbook/v2</code> directory. The analyzer service talks to Watson Tone Analyzer to help analyze the tone of a message. Ensure you are still in the <code>guestbook/v2</code> directory.</p>
 <pre><code class="lang-shell"> oc apply -f analyzer-deployment.yaml
  oc apply -f analyzer-service.yaml
@@ -499,7 +496,7 @@ redis-slave    ClusterIP      172.21.205.35   &lt;none&gt;          6379/TCP    
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Deploy Guestbook app","level":"2.3","depth":1,"next":{"title":"Expose the app using Ingress","level":"2.4","depth":1,"path":"exercise-4/README.md","ref":"exercise-4/README.md","articles":[]},"previous":{"title":"Installing Service Mesh","level":"2.2","depth":1,"path":"exercise-2/README.md","ref":"exercise-2/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"exercise-3/README.md","mtime":"2020-03-11T21:20:03.796Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-11T21:21:12.330Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Deploy Guestbook app","level":"3.1","depth":1,"next":{"title":"Expose the app using Ingress","level":"3.2","depth":1,"path":"exercise-4/README.md","ref":"exercise-4/README.md","articles":[]},"previous":{"title":"Installing Service Mesh","level":"2.2","depth":1,"path":"exercise-2/README.md","ref":"exercise-2/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"exercise-3/README.md","mtime":"2020-03-16T12:50:57.488Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-16T12:52:07.226Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
