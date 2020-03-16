@@ -2,7 +2,7 @@
 
 The BookInfo app is a sample app for users to leave comments. It consists of a web front end, Redis master for storage, and a replicated set of Redis slaves. We will also integrate the app with Watson Tone Analyzer which detects the sentiment in users' comments and replies with emoticons.
 
-![](../README_images/istio1.jpg)
+![](README_images/withistio.svg)
 
 
 ### Enable the automatic sidecar injection for the bookinfo namespace
@@ -28,7 +28,7 @@ In Kubernetes, a sidecar is a utility container in the pod, and its purpose is t
     Sample output:
     ``` shell
     NAME             STATUS   AGE    ISTIO-INJECTION
-    default          Active   271d   enabled
+    bookinfo          Active   271d   enabled
     istio-system     Active   5d2h
     ...
     ```

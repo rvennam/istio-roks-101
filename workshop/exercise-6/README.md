@@ -131,7 +131,7 @@ spec:
 
 In the modified rule, the routed traffic is split between two different subsets of the bookinfo service. In this manner, traffic to the modernized version 2 of bookinfo is controlled on a percentage basis to limit the impact of any unforeseen bugs. This rule can be modified over time until eventually all traffic is directed to the newer version of the service.
 
-View the bookinfo application using the `$NLB_HOSTNAME` specified in [Exercise 5](../exercise-5/README.md) and enter it as a URL in Firefox or Chrome web browsers. **Ensure that you are using a hard refresh (command + Shift + R on Mac or Ctrl + F5 on windows) to remove any browser caching.** You should notice that the bookinfo should swap between V1 or V2 at about the weight you specified.
+View the bookinfo application using the `$INGRESS_HOST` specified in [Exercise 5](../exercise-5/README.md) and enter it as a URL in Firefox or Chrome web browsers. **Ensure that you are using a hard refresh (command + Shift + R on Mac or Ctrl + F5 on windows) to remove any browser caching.** You should notice that the bookinfo should swap between V1 or V2 at about the weight you specified.
 
 ### Route all traffic to reviews v3
 
