@@ -183,7 +183,7 @@
                     
                         <b>3.1.</b>
                     
-                    Deploy Guestbook app
+                    Deploy BookInfo app
             
                 </a>
             
@@ -309,11 +309,10 @@
 <p>     <a href="../README_images/istio-openshift.png" rel="grouped" title="" target="_self" class="fancybox">
        <img src="../README_images/istio-openshift.png" alt="">
      </a></p>
-<h3 id="expose-the-guestbook-app-with-ingress-gateway">Expose the Guestbook app with Ingress Gateway</h3>
+<h3 id="expose-the-bookinfo-app-with-ingress-gateway">Expose the BookInfo app with Ingress Gateway</h3>
 <ol>
-<li><p>Configure the guestbook default route with the Istio Ingress Gateway. The <code>guestbook-gateway.yaml</code> file is in this repository (istio101) in the <code>workshop/plans</code> directory.</p>
-<pre><code class="lang-shell"> cd ../../plans
- oc create -f guestbook-gateway.yaml
+<li><p>Configure the bookinfo default route with the Istio Ingress Gateway. </p>
+<pre><code class="lang-shell"> oc create -f bookinfo/bookinfo-gateway.yaml
 </code></pre>
 </li>
 <li><p>Get the <strong>ROUTE</strong> of the Istio Ingress Gateway.</p>
@@ -324,12 +323,13 @@
 istio-ingressgateway   istio-ingressgateway-istio-system.rvennamocpcluster-c8427b5c054eb1823b50328ad3aeeb58-0000.us-south.containers.appdomain.cloud
 </code></pre>
 </li>
-<li><p>Make note of the HOST address that you retrieved in the previous step, as it will be used to access the Guestbook app in later parts of the course. Create an environment variable called $INGRESS_HOST with your address.</p>
+<li><p>Make note of the HOST address that you retrieved in the previous step, as it will be used to access the BookInfo app in later parts of the course. Create an environment variable called $INGRESS_HOST with your address.</p>
 </li>
 </ol>
 <p>Example:</p>
 <pre><code>export INGRESS_HOST=istio-ingressgateway-istio-system.rvennamocpcluster-c8427b5c054eb1823b50328ad3aeeb58-0000.us-south.containers.appdomain.cloud
 </code></pre><p>Congratulations! You extended the base Ingress features by providing a DNS entry to the Istio service.</p>
+<p>Visit the application by going to http://<ingress_host>/productpage in a new tab.</ingress_host></p>
 <h2 id="references">References:</h2>
 <p><a href="https://kubernetes.io/docs/concepts/services-networking/ingress/" target="_blank">Kubernetes Ingress</a>
 <a href="https://istio.io/docs/tasks/traffic-management/ingress.html" target="_blank">Istio Ingress</a>
@@ -362,7 +362,7 @@ istio-ingressgateway   istio-ingressgateway-istio-system.rvennamocpcluster-c8427
 
             
                 
-                <a href="../exercise-3/" class="navigation navigation-prev " aria-label="Previous page: Deploy Guestbook app">
+                <a href="../exercise-3/" class="navigation navigation-prev " aria-label="Previous page: Deploy BookInfo app">
                     <i class="fa fa-angle-left"></i>
                 </a>
                 
@@ -378,7 +378,7 @@ istio-ingressgateway   istio-ingressgateway-istio-system.rvennamocpcluster-c8427
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Expose the app using Ingress","level":"3.2","depth":1,"next":{"title":"Observability","level":"4.1","depth":1,"path":"exercise-5/README.md","ref":"exercise-5/README.md","articles":[]},"previous":{"title":"Deploy Guestbook app","level":"3.1","depth":1,"path":"exercise-3/README.md","ref":"exercise-3/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"exercise-4/README.md","mtime":"2020-03-16T13:31:47.456Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-16T13:32:53.789Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Expose the app using Ingress","level":"3.2","depth":1,"next":{"title":"Observability","level":"4.1","depth":1,"path":"exercise-5/README.md","ref":"exercise-5/README.md","articles":[]},"previous":{"title":"Deploy BookInfo app","level":"3.1","depth":1,"path":"exercise-3/README.md","ref":"exercise-3/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"exercise-4/README.md","mtime":"2020-03-16T16:34:27.376Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-16T16:35:31.095Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
