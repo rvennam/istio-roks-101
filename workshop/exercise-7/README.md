@@ -26,43 +26,17 @@ When Envoy proxies establish a connection, they exchange and validate certificat
 
 ## Enforce mTLS between all Istio services
 
-1.  To set a mesh-wide authentication policy that enables mutual TLS, submit the following policy. This policy specifies that all workloads in the mesh will only accept encrypted requests using TLS.
+1.  To configure mTLS, we need to modify our previous destination rules to use ISTIO_MUTUAL. 
 
 ```shell
-kubectl apply -f - <<EOF
-apiVersion: "authentication.istio.io/v1alpha1"
-kind: "MeshPolicy"
-metadata:
-  name: "default"
-spec:
-  peers:
-  - mtls: {}
-EOF
+kubectl replace -f bookinfo/destination-rule-all-mtls.yaml
 ```
 
-2.  To configure the client side, we need to modify our previous destination rules to use ISTIO_MUTUAL. Note: In the next version of Istio (1.5 with auto-mTLS), this step is no longer requried.
+2. Send more traffic to your application. Everything should still continue to work as expected.
 
-```shell
-kubectl replace -f - <<EOF
-apiVersion: networking.istio.io/v1alpha3
-kind: DestinationRule
-metadata:
-  name: destination-rule-guestbook
-spec:
-  host: guestbook
-  trafficPolicy:
-    tls:
-      mode: ISTIO_MUTUAL
-  subsets:
-    - name: v1
-      labels:
-        version: '1.0'
-    - name: v2
-      labels:
-        version: '2.0'
-EOF
-```
+3. Launch Kiali again and confirm that traffic is encrypted.
 
+![](../README_images/kiali-security.png)
 ## THANK YOU & SURVEY!
 
 Thank you so much for your time today!  You've done an excellent job making it through the material.

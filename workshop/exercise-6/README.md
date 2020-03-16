@@ -13,95 +13,97 @@ A [DestinationRule](https://istio.io/docs/reference/config/istio.networking.v1al
 A [ServiceEntry](https://istio.io/docs/reference/config/istio.networking.v1alpha3.html#ServiceEntry) configuration enables services within the mesh to access a service not necessarily managed by Istio. The rule describes the endpoints, ports and protocols of a white-listed set of mesh-external domains and IP blocks that services in the mesh are allowed to access.
 
 ### A/B testing with Istio
-A/B testing is a method of performing identical tests against two separate service versions in order to determine which performs better. To prevent Istio from performing the default routing behavior between the original and modernized guestbook service, define the following rules (found in [istio101/workshop/plans](https://github.com/IBM/istio101/tree/master/workshop/plans)):
+A/B testing is a method of performing identical tests against two separate service versions in order to determine which performs better. To prevent Istio from performing the default routing behavior between the original and modernized service, define the following rules (found in [istio101/workshop/plans](https://github.com/IBM/istio101/tree/master/workshop/plans)):
 
 ```shell
-kubectl create -f guestbook-destination.yaml
+kubectl create -f bookinfo/destination-rule-all.yaml
 ```
 Let's examine the rule:
 ```yaml
+...
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
 metadata:
-  name: destination-rule-guestbook
+  name: reviews
 spec:
-  host: guestbook
+  host: reviews
   subsets:
-    - name: v1
-      labels:
-        version: '1.0'
-    - name: v2
-      labels:
-        version: '2.0'
+  - name: v1
+    labels:
+      version: v1
+  - name: v2
+    labels:
+      version: v2
+  - name: v3
+    labels:
+      version: v3
 ```
 
 Next, apply the VirtualService
 ```shell
-kubectl replace -f virtualservice-all-v1.yaml
+kubectl replace -f virtual-service-all-v1.yaml
 ```
 Let's examine the rule:
 ```yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: virtual-service-guestbook
+  name: reviews
 spec:
   hosts:
-    - '*'
-  gateways:
-    - guestbook-gateway
+  - reviews
   http:
-    - route:
-        - destination:
-            host: guestbook
-            subset: v1
+  - route:
+    - destination:
+        host: reviews
+        subset: v1
 ```
 
-The `VirtualService` defines a rule that captures all HTTP traffic coming in through the Istio ingress gateway, `guestbook-gateway`, and routes 100% of the traffic to pods of the guestbook service with label "version: v1". A subset or version of a route destination is identified with a reference to a named service subset which must be declared in a corresponding `DestinationRule`. Since there are three instances matching the criteria of hostname `guestbook` and subset `version: v1`, by default Envoy will send traffic to all three instances in a round robin manner.
+The `VirtualService` defines a rule that captures all HTTP traffic coming in through the Istio ingress gateway, `bookinfo-gateway`, and routes 100% of the traffic to pods of the bookinfo service with label "version: v1". A subset or version of a route destination is identified with a reference to a named service subset which must be declared in a corresponding `DestinationRule`. Since there are three instances matching the criteria of hostname `bookinfo` and subset `version: v1`, by default Envoy will send traffic to all three instances in a round robin manner.
 
-View the guestbook application using the `$NLB_HOSTNAME` specified in [Exercise 5](../exercise-5/README.md) and enter it as a URL in Firefox or Chrome web browsers. You can use the echo command to get this value, if you don't remember it.
+View the bookinfo application using the `$INGRESS_HOST` specified in [Exercise 4](../exercise-4/README.md) and enter it as a URL in Firefox or Chrome web browsers. You can use the echo command to get this value, if you don't remember it.
 
 ```
-echo $NLB_HOSTNAME
+echo $INGRESS_HOST
 ```
+
+You should only get the v1 of the BookInfo application - No stars for ratings 
 
 To enable the Istio service mesh for A/B testing against the new service version, modify the original `VirtualService` rule:
 
 ```shell
-kubectl replace -f virtualservice-test.yaml
+kubectl replace -f virtual-service-firefox.yaml
 ```
 Let's examine the rule:
 ```yaml
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: virtual-service-guestbook
+  name: reviews
 spec:
   hosts:
-    - '*'
-  gateways:
-    - guestbook-gateway
+  - reviews
   http:
-    - match:
+  - match:
         - headers:
             user-agent:
               regex: '.*Firefox.*'
-      route:
-        - destination:
-            host: guestbook
-            subset: v2
-    - route:
-        - destination:
-            host: guestbook
-            subset: v1
+    route:
+    - destination:
+        host: reviews
+        subset: v2
+  - route:
+    - destination:
+        host: reviews
+        subset: v3
 ```
 
-![](../README_images/firefoxchrome.png)
+![](../README_images/bookinfo-firefoxchrome.png)
 
-In Istio `VirtualService` rules, there can be only one rule for each service and therefore when defining multiple [HTTPRoute](https://istio.io/docs/reference/config/istio.networking.v1alpha3/#HTTPRoute) blocks, the order in which they are defined in the yaml matters. Hence, the original `VirtualService` rule is modified rather than creating a new rule. With the modified rule, incoming requests originating from `Firefox` browsers will go to the newer version of guestbook. All other requests fall-through to the next block, which routes all traffic to the original version of guestbook.
+In Istio `VirtualService` rules, there can be only one rule for each service and therefore when defining multiple [HTTPRoute](https://istio.io/docs/reference/config/istio.networking.v1alpha3/#HTTPRoute) blocks, the order in which they are defined in the yaml matters. Hence, the original `VirtualService` rule is modified rather than creating a new rule. With the modified rule, incoming requests originating from `Firefox` browsers will go to the newer version of bookinfo. All other requests fall-through to the next block, which routes all traffic to the original version of bookinfo.
 
 ### Canary deployment
-In `Canary Deployments`, newer versions of services are incrementally rolled out to users to minimize the risk and impact of any bugs introduced by the newer version. To begin incrementally routing traffic to the newer version of the guestbook service, modify the original `VirtualService` rule:
+In `Canary Deployments`, newer versions of services are incrementally rolled out to users to minimize the risk and impact of any bugs introduced by the newer version. To begin incrementally routing traffic to the newer version of the bookinfo service, modify the original `VirtualService` rule:
 
 ```shell
 kubectl replace -f virtualservice-80-20.yaml
@@ -111,48 +113,44 @@ Let's examine the rule:
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: virtual-service-guestbook
+  name: reviews
 spec:
   hosts:
-    - '*'
-  gateways:
-    - guestbook-gateway
+    - reviews
   http:
-    - route:
-        - destination:
-            host: guestbook
-            subset: v1
-          weight: 80
-        - destination:
-            host: guestbook
-            subset: v2
-          weight: 20
+  - route:
+    - destination:
+        host: reviews
+        subset: v1
+      weight: 80
+    - destination:
+        host: reviews
+        subset: v2
+      weight: 20
 ```
 
-In the modified rule, the routed traffic is split between two different subsets of the guestbook service. In this manner, traffic to the modernized version 2 of guestbook is controlled on a percentage basis to limit the impact of any unforeseen bugs. This rule can be modified over time until eventually all traffic is directed to the newer version of the service.
+In the modified rule, the routed traffic is split between two different subsets of the bookinfo service. In this manner, traffic to the modernized version 2 of bookinfo is controlled on a percentage basis to limit the impact of any unforeseen bugs. This rule can be modified over time until eventually all traffic is directed to the newer version of the service.
 
-View the guestbook application using the `$NLB_HOSTNAME` specified in [Exercise 5](../exercise-5/README.md) and enter it as a URL in Firefox or Chrome web browsers. **Ensure that you are using a hard refresh (command + Shift + R on Mac or Ctrl + F5 on windows) to remove any browser caching.** You should notice that the guestbook should swap between V1 or V2 at about the weight you specified.
+View the bookinfo application using the `$NLB_HOSTNAME` specified in [Exercise 5](../exercise-5/README.md) and enter it as a URL in Firefox or Chrome web browsers. **Ensure that you are using a hard refresh (command + Shift + R on Mac or Ctrl + F5 on windows) to remove any browser caching.** You should notice that the bookinfo should swap between V1 or V2 at about the weight you specified.
 
-### Route all traffic to v2
+### Route all traffic to reviews v3
 
-Route all traffic to guestbook v2 with a new VirtualService rule:
+Route all traffic to v3 with a new VirtualService rule:
 
 ```shell
 cat <<EOF | kubectl replace -f -
 apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
-  name: virtual-service-guestbook
+  name: reviews
 spec:
   hosts:
-    - '*'
-  gateways:
-    - guestbook-gateway
+    - reviews
   http:
-    - route:
-        - destination:
-            host: guestbook
-            subset: v2
+  - route:
+    - destination:
+        host: reviews
+        subset: v3
 EOF
 ```
 

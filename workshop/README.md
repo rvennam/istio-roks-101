@@ -19,7 +19,7 @@ After you complete this course, you'll be able to:
 - Secure your mesh using mTLS
 
 ## Architecture
-![](README_images/istio-openshift.png)
+![](README_images/withistio.svg)
 
 ## Workshop setup
 * [Access your cluster](exercise-1/README.md)

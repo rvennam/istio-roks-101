@@ -4,7 +4,7 @@ The components deployed on the service mesh by default are not exposed outside t
 
 An Ingress Gateway resource can be created to allow external requests through the Istio Ingress Gateway to the backing services.
 
-![](../README_images/istio-openshift.png)
+![](README_images/withistio.svg)
 
 ### Expose the BookInfo app with Ingress Gateway
 
