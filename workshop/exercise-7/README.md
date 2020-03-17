@@ -37,7 +37,8 @@ kubectl replace -f destination-rule-all-mtls.yaml
 3. Launch Kiali again and confirm that traffic is encrypted.
 
 ![](../README_images/kiali-security.png)
-## THANK YOU & SURVEY!
+
+## THANK YOU
 
 Thank you so much for your time today!  You've done an excellent job making it through the material.
 
