@@ -20,6 +20,8 @@
 
 ## Deploying the Red Hat OpenShift Service Mesh control plane
 
+The operator uses a `ServiceMeshControlPlane` resource to determine how to install Istio and what components you want. Let's create that resource now.
+
 1.  Create a new project by going to **Home** -> **Projects** -> **Create Project**
 2.  Enter `istio-system` in the **Name** and click **Create**
 3.  Navigate to **Operators** -> **Installed Operators**
