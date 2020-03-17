@@ -21,6 +21,13 @@ After you complete this course, you'll be able to:
 ## Architecture
 ![](README_images/withistio.svg)
 
+**Version 1**
+![](README_images/v1.png)
+**Version 2**
+![](README_images/v2.png)
+**Version 3**
+![](README_images/v3.png)
+
 ## Workshop setup
 * [Access your cluster](exercise-1/README.md)
 * [Installing Service Mesh](exercise-2/README.md)
