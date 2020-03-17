@@ -38,4 +38,4 @@ Visit the application by going to `http://<INGRESS_HOST>/productpage` in a new t
 
 ![](../README_images/bookinfo.png)
 
-#### [Continue to Exercise 5 - Traffic Management](../exercise-5/README.md)
+#### [Continue to Exercise 5 - Observability](../exercise-5/README.md)
