@@ -73,7 +73,7 @@ echo $INGRESS_HOST
 
 You should only get the v1 of the BookInfo application - No stars for ratings 
 
-![](README_images/v1.png)
+![](../README_images/v1.png)
 
 #### Send only Firefox traffic to v2
 
