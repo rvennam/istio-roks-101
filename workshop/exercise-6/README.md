@@ -13,7 +13,7 @@ A [DestinationRule](https://istio.io/docs/reference/config/istio.networking.v1al
 A [ServiceEntry](https://istio.io/docs/reference/config/istio.networking.v1alpha3.html#ServiceEntry) configuration enables services within the mesh to access a service not necessarily managed by Istio. The rule describes the endpoints, ports and protocols of a white-listed set of mesh-external domains and IP blocks that services in the mesh are allowed to access.
 
 ### A/B testing with Istio
-A/B testing is a method of performing identical tests against two separate service versions in order to determine which performs better. To prevent Istio from performing the default routing behavior between the original and modernized service, define the following rules (found in [istio101/workshop/plans](https://github.com/IBM/istio101/tree/master/workshop/plans)):
+A/B testing is a method of performing identical tests against two separate service versions in order to determine which performs better. To prevent Istio from performing the default routing behavior between the original and modernized service, define the following rules:
 
 ```shell
 kubectl create -f destination-rule-all.yaml
@@ -41,7 +41,7 @@ spec:
 
 Next, apply the VirtualService
 ```shell
-kubectl replace -f virtual-service-all-v1.yaml
+kubectl create -f virtual-service-all-v1.yaml
 ```
 Let's examine the rule:
 ```yaml
@@ -106,7 +106,7 @@ In Istio `VirtualService` rules, there can be only one rule for each service and
 In `Canary Deployments`, newer versions of services are incrementally rolled out to users to minimize the risk and impact of any bugs introduced by the newer version. To begin incrementally routing traffic to the newer version of the bookinfo service, modify the original `VirtualService` rule:
 
 ```shell
-kubectl replace -f virtualservice-80-20.yaml
+kubectl replace -f virtual-service-reviews-80-20.yaml
 ```
 Let's examine the rule:
 ```yaml

@@ -36,10 +36,10 @@ In Kubernetes, a sidecar is a utility container in the pod, and its purpose is t
 
 ## Clone application source repo
 
-    ```shell
-    git clone https://github.com/rvennam/istio-roks-101
-    cd istio-roks-101/bookinfo
-    ```
+```shell
+git clone https://github.com/rvennam/istio-roks-101
+cd istio-roks-101/bookinfo
+```
 
 ## Install the BookInfo app
 

@@ -14,7 +14,7 @@ You can read more about how [Istio mixer enables telemetry reporting](https://is
 Generate a small load to the app by sending traffic to the Ingress host location you set in the last exercise.
 
 ```shell
-for i in {1..20}; do sleep 0.5; curl $INGRESS_HOST; done
+for i in {1..20}; do sleep 0.5; curl $INGRESS_HOST/productpage; done
 ```
 
 ## View bookinfo telemetry data
