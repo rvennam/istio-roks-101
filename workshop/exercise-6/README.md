@@ -15,6 +15,8 @@ A [ServiceEntry](https://istio.io/docs/reference/config/istio.networking.v1alpha
 ### A/B testing with Istio
 A/B testing is a method of performing identical tests against two separate service versions in order to determine which performs better. To prevent Istio from performing the default routing behavior between the original and modernized service, define the following rules:
 
+#### Label the versions
+
 ```shell
 kubectl create -f destination-rule-all.yaml
 ```
@@ -38,6 +40,8 @@ spec:
     labels:
       version: v3
 ```
+
+#### Send all reviews traffic to v1
 
 Next, apply the VirtualService
 ```shell
@@ -68,6 +72,10 @@ echo $INGRESS_HOST
 ```
 
 You should only get the v1 of the BookInfo application - No stars for ratings 
+
+![](README_images/v1.png)
+
+#### Send only Firefox traffic to v2
 
 To enable the Istio service mesh for A/B testing against the new service version, modify the original `VirtualService` rule:
 
@@ -105,6 +113,8 @@ In Istio `VirtualService` rules, there can be only one rule for each service and
 ### Canary deployment
 In `Canary Deployments`, newer versions of services are incrementally rolled out to users to minimize the risk and impact of any bugs introduced by the newer version. To begin incrementally routing traffic to the newer version of the bookinfo service, modify the original `VirtualService` rule:
 
+#### Send 80% of traffic to v1
+
 ```shell
 kubectl replace -f virtual-service-reviews-80-20.yaml
 ```
@@ -133,7 +143,7 @@ In the modified rule, the routed traffic is split between two different subsets 
 
 View the bookinfo application using the `$INGRESS_HOST` specified in [Exercise 5](../exercise-5/README.md) and enter it as a URL in Firefox or Chrome web browsers. **Ensure that you are using a hard refresh (command + Shift + R on Mac or Ctrl + F5 on windows) to remove any browser caching.** You should notice that the bookinfo should swap between V1 or V2 at about the weight you specified.
 
-### Route all traffic to reviews v3
+#### Route all traffic to reviews v3
 
 Route all traffic to v3 with a new VirtualService rule:
 
