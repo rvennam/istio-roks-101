@@ -43,7 +43,7 @@ kubectl replace -f destination-rule-all-mtls.yaml
 
 ## Enable SSL for traffic coming in to your cluster (HTTPS)
 
-![](../README_images/secure-route-create.png
+![](../README_images/secure-route-create.png)
 
 1. Launch the OpenShift console and choose the **istio-system** project
 2. Under **Networking** -> **Routes**, click **Create Route**
