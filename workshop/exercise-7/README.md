@@ -24,7 +24,7 @@ When an application microservice connects to another microservice, the communica
 
 When Envoy proxies establish a connection, they exchange and validate certificates to confirm that each is indeed connected to a valid and expected peer. The established identities can later be used as basis for policy checks (e.g., access authorization).
 
-## Enforce mTLS between all Istio services
+## Configure mTLS between your pods
 
 1.  To configure mTLS, we need to modify our previous destination rules to use ISTIO_MUTUAL. 
 
@@ -34,9 +34,30 @@ kubectl replace -f destination-rule-all-mtls.yaml
 
 2. Send more traffic to your application. Everything should still continue to work as expected.
 
-3. Launch Kiali again and confirm that traffic is encrypted.
+3. Launch Kiali again and go to the **Graph**
+
+4. Under Display, select **Security**. Confirm your traffic is secure.
 
 ![](../README_images/kiali-security.png)
+
+
+## Enable SSL for traffic coming in to your cluster (HTTPS)
+
+![](../README_images/secure-route-create.png
+
+1. Launch the OpenShift console and choose the **istio-system** project
+2. Under **Networking** -> **Routes**, click **Create Route**
+3. Name: `istio-ingressgateway-secure`
+4. Service: `istio-ingressgateway`
+5. Target Port `80->8080`
+6. Check `Secure Route`
+7. TLS Termination: `Edge`
+8. Insecure Traffic: `None`
+9. Click **Create**
+
+Visit the new HTTPS route next to **istio-ingressgateway-secure**. Remember to add /productpage at the end of the URL!
+
+![](../README_images/https-route.png)
 
 ## THANK YOU
 
