@@ -54,7 +54,6 @@ kubectl replace -f destination-rule-all-mtls.yaml
     example.com.crt and example.com.key files should be generated.
 
 2. Create a certificate and a private key for istio-ingressgateway.istio-system.svc:
-
     ```
     openssl req -out ingGW.csr -newkey rsa:2048 -nodes -keyout ingGW.key -subj "/CN=istio-ingressgateway.istio-system.svc"
     openssl x509 -req -days 365 -CA example.com.crt -CAkey example.com.key -set_serial 0 -in ingGW.csr -out ./ingGW.crt
