@@ -70,6 +70,8 @@ kubectl replace -f destination-rule-all-mtls.yaml
     kubectl delete pod -l app=istio-ingressgateway -n istio-system
     ```
 
+### Create a secure Route to the Ingress Gateway
+
 ![](../README_images/secure-route-create.png)
 
 1. Launch the OpenShift console and choose the **istio-system** project
