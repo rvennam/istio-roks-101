@@ -78,7 +78,7 @@ kubectl replace -f destination-rule-all-mtls.yaml
 2. Under **Networking** -> **Routes**, click **Create Route**
 3. Name: `istio-ingressgateway-secure`
 4. Service: `istio-ingressgateway`
-5. Target Port `80->8080`
+5. Target Port `443->8443`
 6. Check `Secure Route`
 7. TLS Termination: `Re-encrypt`
 8. Insecure Traffic: `None`
