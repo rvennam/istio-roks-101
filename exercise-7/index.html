@@ -341,48 +341,6 @@ Envoys then use the certificates to identify each other and establish an authent
 <p>     <a href="../README_images/kiali-security.png" rel="grouped" title="" target="_self" class="fancybox">
        <img src="../README_images/kiali-security.png" alt="">
      </a></p>
-<h2 id="enable-ssl-for-traffic-coming-in-to-your-cluster-https">Enable SSL for traffic coming in to your cluster (HTTPS)</h2>
-<p>     <a href="../README_images/reencrypt.png" rel="grouped" title="" target="_self" class="fancybox">
-       <img src="../README_images/reencrypt.png" alt="">
-     </a></p>
-<h3 id="create-certs-for-router-to-ingress-gateway">Create certs for Router to Ingress Gateway</h3>
-<ol>
-<li><p>Create a root certificate and private key to sign the certificate for your services:</p>
-<pre><code> openssl req -x509 -sha256 -nodes -days 365 -newkey rsa:2048 -subj &apos;/O=example Inc./CN=istio-system.svc&apos; -keyout example.com.key -out example.com.crt
-</code></pre><p> example.com.crt and example.com.key files should be generated.</p>
-</li>
-<li><p>Create a certificate and a private key for istio-ingressgateway.istio-system.svc:</p>
-<pre><code> openssl req -out ingGW.csr -newkey rsa:2048 -nodes -keyout ingGW.key -subj &quot;/CN=istio-ingressgateway.istio-system.svc&quot;
- openssl x509 -req -days 365 -CA example.com.crt -CAkey example.com.key -set_serial 0 -in ingGW.csr -out ./ingGW.crt
-</code></pre><p> ingGW.crt, ingGW.csr, and ingGW.key files should be generated.</p>
-</li>
-<li><p>Create a Kubernetes secret to hold the server&#x2019;s certificate and private key. Use kubectl to create the secret istio-ingressgateway-certs in namespace istio-system.</p>
-<pre><code> kubectl create -n istio-system secret tls istio-ingressgateway-certs --key ingGW.key --cert ingGW.crt
-</code></pre></li>
-<li><p>Delete the ingress gateway pod and force the ingress gateway pod to restart and reload key and certificate</p>
-<pre><code> kubectl delete pod -l app=istio-ingressgateway -n istio-system
-</code></pre></li>
-</ol>
-<h3 id="create-a-secure-route-to-the-ingress-gateway">Create a secure Route to the Ingress Gateway</h3>
-<p>     <a href="../README_images/secure-route-create.png" rel="grouped" title="" target="_self" class="fancybox">
-       <img src="../README_images/secure-route-create.png" alt="">
-     </a></p>
-<ol>
-<li>Launch the OpenShift console and choose the <strong>istio-system</strong> project</li>
-<li>Under <strong>Networking</strong> -&gt; <strong>Routes</strong>, click <strong>Create Route</strong></li>
-<li>Name: <code>istio-ingressgateway-secure</code></li>
-<li>Service: <code>istio-ingressgateway</code></li>
-<li>Target Port <code>443-&gt;8443</code></li>
-<li>Check <code>Secure Route</code></li>
-<li>TLS Termination: <code>Re-encrypt</code></li>
-<li>Insecure Traffic: <code>None</code></li>
-<li>Destination CA Certificate: Upload the <code>example.com.crt</code> file from the previous section</li>
-<li>Click <strong>Create</strong></li>
-</ol>
-<p>Visit the new HTTPS route next to <strong>istio-ingressgateway-secure</strong>. Remember to add /productpage at the end of the URL!</p>
-<p>     <a href="../README_images/https-route.png" rel="grouped" title="" target="_self" class="fancybox">
-       <img src="../README_images/https-route.png" alt="">
-     </a></p>
 <h2 id="thank-you">THANK YOU</h2>
 <p>Thank you so much for your time today!  You&apos;ve done an excellent job making it through the material.</p>
 <h2 id="further-reading">Further Reading</h2>
@@ -435,7 +393,7 @@ Envoys then use the certificates to identify each other and establish an authent
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Secure your mesh","level":"4.3","depth":1,"previous":{"title":"Perform traffic management","level":"4.2","depth":1,"path":"exercise-6/README.md","ref":"exercise-6/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"exercise-7/README.md","mtime":"2020-03-24T20:47:13.210Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-24T20:48:23.113Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Secure your mesh","level":"4.3","depth":1,"previous":{"title":"Perform traffic management","level":"4.2","depth":1,"path":"exercise-6/README.md","ref":"exercise-6/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"exercise-7/README.md","mtime":"2020-04-30T14:56:21.381Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-30T14:57:33.869Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>

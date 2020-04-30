@@ -304,23 +304,18 @@
                                 <section class="normal markdown-section">
                                 
                                 <h1 id="exercise-2---installing-istio-on-ibm-cloud-kubernetes-service">Exercise 2 - Installing Istio on IBM Cloud Kubernetes Service</h1>
-<h2 id="install-the-operator">Install the Operator</h2>
-<p>     <a href="../assets/operatorhub-istio.png" rel="grouped" title="" target="_self" class="fancybox">
-       <img src="../assets/operatorhub-istio.png" alt="">
+<h2 id="install-the-operators">Install the Operators</h2>
+<p>To install the Red Hat OpenShift Service Mesh Operator, you must first install Elasticsearch, Jaeger, and Kiali Operators.
+     <a href="../assets/installed-opertors.png" rel="grouped" title="" target="_self" class="fancybox">
+       <img src="../assets/installed-opertors.png" alt="">
      </a></p>
 <ol>
-<li><p>Navigate to your cluster in the <a href="https://cloud.ibm.com/kubernetes/clusters" target="_blank">IBM Cloud Dashboard</a></p>
-</li>
-<li><p>Click on your cluster and Launch <strong>OpenShift web console</strong></p>
-</li>
-<li><p>Select <strong>Administrator</strong> in the drop down and then select <strong>Operators</strong> -&gt; <strong>OperatorHub</strong></p>
-</li>
-<li><p>Search for <em>Service Mesh</em> and select <strong>Red Hat OpenShift Service Mesh</strong></p>
-</li>
-<li><p>Click <strong>Install</strong> and then <strong>Subscribe</strong></p>
-</li>
-<li><p>Click on <strong>Installed Operators</strong> and refresh the page to see the changes.</p>
-</li>
+<li>From the <strong>OpenShift web console</strong>, select <strong>Administrator</strong> in the drop down</li>
+<li>Then select <strong>Operators</strong> -&gt; <strong>OperatorHub</strong></li>
+<li>Search for <strong>Elasticsearch Operator</strong> -&gt; <strong>Install</strong> -&gt; <strong>Subscribe</strong></li>
+<li>Search for <strong>Red Hat OpenShift Jaeger </strong> -&gt; <strong>Install</strong> -&gt; <strong>Subscribe</strong></li>
+<li>Search for <strong>Kiali Operator</strong> -&gt; <strong>Install</strong> -&gt; <strong>Subscribe</strong></li>
+<li>Search for <strong>Red Hat OpenShift Service Mesh</strong> -&gt; <strong>Install</strong> -&gt; <strong>Subscribe</strong></li>
 </ol>
 <h2 id="deploying-the-red-hat-openshift-service-mesh-control-plane">Deploying the Red Hat OpenShift Service Mesh control plane</h2>
 <p>The operator uses a <code>ServiceMeshControlPlane</code> resource to determine how to install Istio and what components you want. Let&apos;s create that resource now.</p>
@@ -329,7 +324,7 @@
 <li>Enter <code>istio-system</code> in the <strong>Name</strong> and click <strong>Create</strong></li>
 <li>Navigate to <strong>Operators</strong> -&gt; <strong>Installed Operators</strong></li>
 <li>Click the <strong>Red Hat OpenShift Service Mesh Operator</strong>. </li>
-<li>Under <strong>Istio Service Mesh Control Plane</strong> click <strong>Create Instance</strong>.</li>
+<li>Under <strong>Istio Service Mesh Control Plane</strong> click <strong>Create ServiceMeshControlPlane</strong>.</li>
 <li>Then, click <strong>Create</strong>. The Operator creates Pods, services, and Service Mesh control plane components based on your configuration parameters.</li>
 </ol>
 <h3 id="create-a-servicemeshmemberroll">Create a ServiceMeshMemberRoll</h3>
@@ -340,7 +335,8 @@
 <ol>
 <li>Navigate to <strong>Operators</strong> &#x2192; <strong>Installed Operators</strong> again.</li>
 <li>Click the <strong>Red Hat OpenShift Service Mesh Operator</strong>.</li>
-<li>Under <strong>Istio Service Mesh Member Roll</strong> click <strong>Create Instance</strong></li>
+<li>In the tab area, scroll to the right to find <strong>Istio Service Mesh Member Roll</strong> </li>
+<li>Click <strong>Create ServiceMeshMemberRoll</strong></li>
 <li>Change <code>your-project</code> to <code>bookinfo</code> and delete the last line.</li>
 <li>Then, click <strong>Create</strong>. </li>
 </ol>
@@ -389,7 +385,7 @@
     <script>
         var gitbook = gitbook || [];
         gitbook.push(function() {
-            gitbook.page.hasChanged({"page":{"title":"Installing Service Mesh","level":"2.2","depth":1,"next":{"title":"Deploy BookInfo app","level":"3.1","depth":1,"path":"exercise-3/README.md","ref":"exercise-3/README.md","articles":[]},"previous":{"title":"Access your cluster","level":"2.1","depth":1,"path":"exercise-1/README.md","ref":"exercise-1/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"exercise-2/README.md","mtime":"2020-03-24T20:47:13.210Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-03-24T20:48:23.113Z"},"basePath":"..","book":{"language":""}});
+            gitbook.page.hasChanged({"page":{"title":"Installing Service Mesh","level":"2.2","depth":1,"next":{"title":"Deploy BookInfo app","level":"3.1","depth":1,"path":"exercise-3/README.md","ref":"exercise-3/README.md","articles":[]},"previous":{"title":"Access your cluster","level":"2.1","depth":1,"path":"exercise-1/README.md","ref":"exercise-1/README.md","articles":[]},"dir":"ltr"},"config":{"plugins":["collapsible-chapters","hints","copy-code-button","back-to-top-button","fancybox","web-header","codetabs"],"root":"workshop","styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"pluginsConfig":{"webheader":{"headerTitle":"Istio on ROKS"},"prism":{"css":["prismjs/themes/prism-tomorrow.css"]},"fancybox":{"helpers":{"buttons":{}},"openEffect":"elastic","closeEffect":"elastic"},"web-header":{},"search":{},"collapsible-chapters":{},"codetabs":{},"hints":{"danger":"fa fa-exclamation-circle","info":"fa fa-info-circle","tip":"fa fa-mortar-board","working":"fa fa-wrench"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"fontsettings":{"theme":"white","family":"sans","size":2},"highlight":{},"back-to-top-button":{},"copy-code-button":{},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":true}},"theme":"default","pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"variables":{},"title":"Istio on ROKS","gitbook":"3.2.3"},"file":{"path":"exercise-2/README.md","mtime":"2020-04-30T14:56:21.377Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2020-04-30T14:57:33.869Z"},"basePath":"..","book":{"language":""}});
         });
     </script>
 </div>
