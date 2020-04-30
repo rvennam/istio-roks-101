@@ -14,18 +14,16 @@ You can read more about how [Istio mixer enables telemetry reporting](https://is
 Generate a small load to the app by sending traffic to the Ingress host location you set in the last exercise.
 
 ```shell
-for i in {1..20}; do sleep 0.5; curl $INGRESS_HOST/productpage; done
+for i in {1..20}; do sleep 0.5; curl -I $INGRESS_HOST/productpage; done
 ```
 
 ## View bookinfo telemetry data
 
 #### Grafana
 
-1. Navigate to your cluster in the [IBM Cloud Dashboard](https://cloud.ibm.com/kubernetes/clusters)
-2. Click on your cluster and launch **OpenShift web console**
-4. Under **Networking** -> **Routes**, select the URL next to **grafana**
-3. Click on Home -> Istio -> Istio Service Dashboard.
-4. Select `bookinfo` in the Service drop down.
+1. In the **OpenShift web console**, under **Networking** -> **Routes**, click the URL next to **grafana**
+2. Click on Home -> Istio -> Istio Service Dashboard.
+3. Select `bookinfo` in the Service drop down.
 
 ![](../README_images/bookinfo-grafana.png)
 
@@ -36,12 +34,10 @@ This Grafana dashboard provides metrics for each workload. Explore the other das
 
 Kiali is an open-source project that installs as an add-on on top of Istio to visualize your service mesh. It provides deeper insight into how your microservices interact with one another, and provides features such as circuit breakers and request rates for your services.
 
-1. Navigate to your cluster in the [IBM Cloud Dashboard](https://cloud.ibm.com/kubernetes/clusters)
-2. Click on your cluster and launch **OpenShift web console**
-4. Under **Networking** -> **Routes**, select the URL next to **kiali**
-5. Click the "Graph" tab on the left side and select the `bookinfo` and `istio-system` namespace to see the a visual service graph of the various services in your Istio mesh. You can see request rates as well by clicking the "Edge Labels" tab and choosing "Traffic rate per second".
-    > Info: You'll need to access your BookInfo application and refresh the page a few times for the graph to be generated and connected properly.
-6. In a different tab, visit the BookInfo application and refresh the page multiple times to generate some load, or run the load script in the previous section.
+1. From the **OpenShift web console**, under **Networking** -> **Routes**, select the URL next to **kiali**
+2. Click the "Graph" tab on the left side and select the `bookinfo` and `istio-system` namespace to see the a visual service graph of the various services in your Istio mesh. 
+3. You can see request rates as well by clicking the "Edge Labels" tab and choosing "Traffic rate per second".
+4. In a different tab, visit the BookInfo application and refresh the page multiple times to generate some load, or run the load script in the previous section.
 
 Kiali has a number of views to help you visualize your services. Click through the various tabs to explore the service graph, and the various views for workloads, applications and services.
 

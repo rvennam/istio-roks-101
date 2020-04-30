@@ -10,9 +10,9 @@ OR
 
 * Create your own: [http://cloud.ibm.com/registration](http://cloud.ibm.com/registration)
 
-## Access the Cluster using the Console
+## Access the Lab Cluster using the Console
 
-1. Instructors will provide a URL to a web app. Enter your IBMid \(the email you used to sign up\) and the lab key \(also provided by the instructor\).
+1. Visit https://grant-cluster-5079.mybluemix.net Enter your IBMid \(the email you used to sign up\) and the lab key \(also provided by the instructor\).
 
     ![Get clusters app](../assets/get-clusters.png)
 
@@ -20,7 +20,7 @@ OR
 
     ![Instructions to access cluster](../assets/access-clusters.png)
 
-3. Back in IBM Cloud, refresh the [IBM Cloud Dashboard](https://cloud.ibm.com). If required, switch to the **1860103 - IBM** account by clicking on the account selection drop down in the top nav bar.
+3. Back in IBM Cloud, refresh the [IBM Cloud Dashboard](https://cloud.ibm.com). If you don't see the cluster, confirm that you are in the **1860103 - IBM** account by clicking on the account selection drop down in the top nav bar.
 
     ![IBM Account](../assets/ibmaccount.png)
 
@@ -56,7 +56,7 @@ To avoid installing the command line, the recommended approach is to use the IBM
 
 It's preconfigured with the full IBM Cloud CLI and tons of plug-ins and tools that you can use to manage apps, resources, and infrastructure.
 
-1. In the Console menu bar, click the IBM Cloud Shell icon to start a session
+1. In the IBM Cloud Console menu bar, click the IBM Cloud Shell icon to start a session
 
     ![](../assets/cloud-shell-access.png)
 
@@ -72,14 +72,11 @@ It's preconfigured with the full IBM Cloud CLI and tons of plug-ins and tools th
     ![Copy the login credentials](../assets/copy-login-command.png)
 
 
-1. In a Shell termimal, paste the login command you copied from the web console.
-
-    ```bash
-    oc login https://c100-e.us-south.containers.cloud.ibm.com:30360 --token=NYVkVysxxxxxxxxxxxxxxxxxxxxRQa8tM
-    ```
+1. In a IBM Cloud Shell termimal, paste the `oc login ...`login command you copied from the web console.
 
     You should see a success message similar to the one below:
-
+    
+    Example:
     ```bash
     oc login https://c100-e.us-south.containers.cloud.ibm.com:30360 --token=NYVkVysxxxxxxxxxxxxxxxxxxxxRQa8tM
 
@@ -87,7 +84,7 @@ It's preconfigured with the full IBM Cloud CLI and tons of plug-ins and tools th
 
     You have access to the following projects and can switch between them with 'oc project <projectname>'
     ```
-Your CLI is now connected to your Red Hat OpenShift cluster running in IBM Cloud.
+Your Cloud Shell CLI is now connected to your Red Hat OpenShift cluster running in IBM Cloud.
 
 
 ## Validate cluster access using `oc` commands
@@ -98,19 +95,13 @@ Your CLI is now connected to your Red Hat OpenShift cluster running in IBM Cloud
     oc get node
     ```
 
-2. View services, deployments, and pods.
-
-    ```bash
-    oc get svc,deploy,po --all-namespaces
-    ```
-
-3. View projects
+2. View projects
 
     ```bash
     oc get projects
     ```
 
-You've completed the getting started! Let's recap -- in this section, you:
+You've completed the getting started section! Let's recap -- in this section, you:
 
 * Got an OpenShift cluster and accessed its Web Console.
 * Connected your local CLI to a running OpenShift cluster on IBM Cloud

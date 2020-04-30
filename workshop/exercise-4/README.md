@@ -19,22 +19,22 @@ An Ingress Gateway resource can be created to allow external requests through th
     ```shell
     oc get routes -n istio-system istio-ingressgateway
     ```
-    Output:
+    Example output:
     ```shell
     NAME                   HOST
-istio-ingressgateway   istio-ingressgateway-istio-system.rvennamocpcluster-c8427b5c054eb1823b50328ad3aeeb58-0000.us-south.containers.appdomain.cloud
+    istio-ingressgateway   istio-ingressgateway-istio-system.rvennamocpcluster-c8427b5c054eb1823b50328ad3aeeb58-0000.us-south.containers.appdomain.cloud
     ```
 
-1. Make note of the HOST address that you retrieved in the previous step, as it will be used to access the BookInfo app in later parts of the course. Create an environment variable called $INGRESS_HOST with your address.
+3. Save the HOST address that you retrieved in the previous step, as it will be used to access the BookInfo app in later parts of the course. Create an environment variable called $INGRESS_HOST with your address.
 
-Example:
-```
-export INGRESS_HOST=istio-ingressgateway-istio-system.rvennamocpcluster-c8427b5c054eb1823b50328ad3aeeb58-0000.us-south.containers.appdomain.cloud
-```
+    Example:
+    ```
+    export INGRESS_HOST=istio-ingressgateway-istio-system.rvennamocpcluster-c8427b5c054eb1823b50328ad3aeeb58-0000.us-south.containers.appdomain.cloud
+    ```
 
 Congratulations! You extended the base Ingress features by providing a DNS entry to the Istio service.
 
-Visit the application by going to `http://<INGRESS_HOST>/productpage` in a new tab. If you keep hitting Refresh, you should see different versions of the page in random order (v1, v2, v3).
+Visit the application by going to `<INGRESS_HOST>/productpage` in a new tab. If you keep hitting Refresh, you should see different versions of the page in random order (v1 - no stars, v2 - black stars, v3 - red stars).
 
 ![](../README_images/bookinfo.png)
 

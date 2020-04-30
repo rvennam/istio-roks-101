@@ -8,7 +8,7 @@ The BookInfo app is a sample app for users to leave comments. It consists of a w
 ### Enable the automatic sidecar injection for the bookinfo namespace
 In Kubernetes, a sidecar is a utility container in the pod, and its purpose is to support the main container. For Istio to work, Envoy proxies must be deployed as sidecars to each pod of the deployment. There are two ways of injecting the Istio sidecar into a pod: manually using the istioctl CLI tool or automatically using the Istio sidecar injector. In this exercise, we will use the automatic sidecar injection provided by Istio.
 
-1.  Create a project called "bookinfo"
+1.  From your **IBM Cloud Shell** create a project called "bookinfo"
     ``` shell
     oc new-project bookinfo
     ```
