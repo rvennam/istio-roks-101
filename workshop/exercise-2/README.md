@@ -20,7 +20,7 @@ The operator uses a `ServiceMeshControlPlane` resource to determine how to insta
 1.  Create a new project by going to **Home** -> **Projects** -> **Create Project**
 2.  Enter `istio-system` in the **Name** and click **Create**
 3.  Navigate to **Operators** -> **Installed Operators**
-4.  Click the **Red Hat OpenShift Service Mesh Operator**. 
+4.  Click the **Red Hat OpenShift Service Mesh Operator**. If you don't see it, wait a couple of minutes and refresh.
 5.  Under **Istio Service Mesh Control Plane** click **Create ServiceMeshControlPlane**.
 6.  Then, click **Create**. The Operator creates Pods, services, and Service Mesh control plane components based on your configuration parameters.
 
