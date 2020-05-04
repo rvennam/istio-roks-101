@@ -12,35 +12,35 @@ OR
 
 ## Access the Lab Cluster using the Console
 
-1. Visit https://grant-cluster-5079.mybluemix.net Enter your IBMid \(the email you used to sign up\) and the lab key \(also provided by the instructor\).
+  1. Visit [https://5079.mybluemix.net/](https://5079.mybluemix.net/) Enter your IBMid \(the email you used to sign up\) and the lab key \(also provided by the instructor\).
 
     ![Get clusters app](../assets/get-clusters.png)
 
-2. Follow the instructions on the next page. You will be added to the IBM Workshop account and granted access to a cluster. Note the name of your cluster. In the example below, it's `roks07`.
+1. Follow the instructions on the next page. You will be added to the IBM Workshop account and granted access to a cluster. Note the name of your cluster. In the example below, it's `roks07`.
 
     ![Instructions to access cluster](../assets/access-clusters.png)
 
-3. Back in IBM Cloud, refresh the [IBM Cloud Dashboard](https://cloud.ibm.com). If you don't see the cluster, confirm that you are in the **1860103 - IBM** account by clicking on the account selection drop down in the top nav bar.
+2. Back in IBM Cloud, refresh the [IBM Cloud Dashboard](https://cloud.ibm.com). If you don't see the cluster, confirm that you are in the **1860103 - IBM** account by clicking on the account selection drop down in the top nav bar.
 
     ![IBM Account](../assets/ibmaccount.png)
 
-4. Click on **Clusters** in the **Resource Summary** tile.
+3. Click on **Clusters** in the **Resource Summary** tile.
 
     ![Find the Resource Summary tile](../assets/dashboard.png)
 
-5. Under **Clusters**, click on the cluster that has been assigned to you.
+4. Under **Clusters**, click on the cluster that has been assigned to you.
 
     ![Choose a cluster](../assets/clusters-overview.png)
 
-6. You can also see your cluster in the list of OpenShift clusters [IBM Cloud Clusters Dashboard](https://cloud.ibm.com/kubernetes/clusters?platformType=openshift)
+5. You can also see your cluster in the list of OpenShift clusters [IBM Cloud Clusters Dashboard](https://cloud.ibm.com/kubernetes/clusters?platformType=openshift)
 
     ![Clusters Dashboard](../assets/cluster-dashboard.png)
 
-7. Have a look at the cluster overview!
+6. Have a look at the cluster overview!
 
     ![Launch the OpenShift web console](../assets/cluster-overview.png)
 
-8. Click on **OpenShift web console** on the top right to launch the web console.
+7. Click on **OpenShift web console** on the top right to launch the web console.
 
     ![Launch the OpenShift web console](../assets/ocp-console.png)
 
