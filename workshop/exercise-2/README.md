@@ -8,9 +8,9 @@ To install the Red Hat OpenShift Service Mesh Operator, you must first install E
 1. From the **OpenShift web console**, select **Administrator** in the drop down
 2. Then select **Operators** -> **OperatorHub**
 3. Search for **Elasticsearch Operator** -> **Install** -> **Subscribe**
-4. Search for **Red Hat OpenShift Jaeger ** -> **Install** -> **Subscribe**
-5. Search for **Kiali Operator** -> **Install** -> **Subscribe**
-6. Search for **Red Hat OpenShift Service Mesh** -> **Install** -> **Subscribe**
+4. **OperatorHub** -> **Red Hat OpenShift Jaeger ** -> **Install** -> **Subscribe**
+5. **OperatorHub** -> **Kiali Operator** -> **Install** -> **Subscribe**
+6. **OperatorHub** -> **Red Hat OpenShift Service Mesh** -> **Install** -> **Subscribe**
 
 
 ## Deploying the Red Hat OpenShift Service Mesh control plane
