@@ -12,7 +12,7 @@ OR
 
 ## Access the Lab Cluster using the Console
 
-  1. Visit [https://5079.mybluemix.net/](https://5079.mybluemix.net/) Enter your IBMid \(the email you used to sign up\) and the lab key \(also provided by the instructor\).
+  1. Visit [https://openshiftworkshop.mybluemix.net](https://openshiftworkshop.mybluemix.net) Enter your IBMid \(the email you used to sign up\) and the lab key \(also provided by the instructor\).
 
     ![Get clusters app](../assets/get-clusters.png)
 
@@ -20,7 +20,7 @@ OR
 
     ![Instructions to access cluster](../assets/access-clusters.png)
 
-2. Back in IBM Cloud, refresh the [IBM Cloud Dashboard](https://cloud.ibm.com). If you don't see the cluster, confirm that you are in the **1860103 - IBM** account by clicking on the account selection drop down in the top nav bar.
+2. Back in IBM Cloud, refresh the [IBM Cloud Dashboard](https://cloud.ibm.com). If you don't see the cluster, confirm that you are in the **1909673** account by clicking on the account selection drop down in the top nav bar.
 
     ![IBM Account](../assets/ibmaccount.png)
 
