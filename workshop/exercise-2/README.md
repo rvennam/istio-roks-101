@@ -1,4 +1,4 @@
-# Exercise 2 - Installing Istio on IBM Cloud Kubernetes Service
+# Exercise 2 - Installing Istio on Red Hat OpenShift
 
 
 ## Install the Operators
